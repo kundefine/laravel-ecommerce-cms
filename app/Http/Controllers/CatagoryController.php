@@ -42,7 +42,7 @@ class CatagoryController extends Controller
         $child_categories_id = [];
         $child_categories_map = null;
 
-        if(count(request('child_categories'))) {
+        if(request('child_categories')) {
             foreach(request('child_categories') as $id => $value) {
                 $child_categories_id[] = $id;
             }
@@ -58,7 +58,7 @@ class CatagoryController extends Controller
             'child_catagories_json' => json_encode($child_categories_map),
         ]);
         
-        return back();
+        return back()->with('success', 'Category has been create successfully.');
     }
 
     /**
@@ -81,8 +81,9 @@ class CatagoryController extends Controller
     public function edit(Catagory $catagory)
     {
         $child_catagories = Catagory::get()->where('id', '!=', $catagory->id);
+        $menus = Menu::all();
         $allready_child = json_decode($catagory->child_catagories_id);
-        return view('admin.category.edit', compact('catagory', 'child_catagories', 'allready_child'));
+        return view('admin.category.edit', compact('catagory', 'child_catagories', 'allready_child', 'menus'));
     }
 
     /**
@@ -94,7 +95,25 @@ class CatagoryController extends Controller
      */
     public function update(Request $request, Catagory $catagory)
     {
-        //
+        $child_categories_id = [];
+        $child_categories_map = null;
+
+        if(request('child_categories')) {
+            foreach(request('child_categories') as $id => $value) {
+                $child_categories_id[] = $id;
+            }
+            $child_categories_map = request('child_categories');
+        }
+        
+        $catagory->title = request('category_title');
+        $catagory->visibility = request('visibility');
+        $catagory->menu_id = request('menu_id');
+        $catagory->child_catagories_id = json_encode($child_categories_id);
+        $catagory->child_catagories_json = json_encode($child_categories_map);
+
+        $catagory->save();
+        
+        return back()->with('success', 'Category has been Updated successfully.');
     }
 
     /**
@@ -105,6 +124,8 @@ class CatagoryController extends Controller
      */
     public function destroy(Catagory $catagory)
     {
-        //
+        $catagory->delete();
+
+        return back()->with('success', 'Delete Successfull');
     }
 }

@@ -21,28 +21,36 @@
                 </ul>                                
             </div>
             <div class="panel-body">
-                @foreach($all_categories as $category)
-                    <div class="col-md-4">
-                        <div class="tasks" id="tasks_progreess">
-                            <div class="task-item task-primary">
-                                <div class="task-text">{{$category->title}}</div>
-                                <div class="task-footer">
-                                    <div class="pull-left">
-                                        <a href="/admin/category/{{$category->id}}/edit">
-                                            <span class="fa fa-edit"></span> Edit
-                                        </a>
-                                        
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="/admin/category/delete/{{$category->id}}">
-                                            <span class="fa fa-trash-o"></span> Delete
-                                        </a>
-                                    </div>
-                                </div>                                    
-                            </div>  
+                @if(count($all_categories))
+                    @foreach($all_categories as $category)
+                        <div class="col-md-4">
+                            <div class="tasks" id="tasks_progreess">
+                                <div class="task-item task-primary">
+                                    <div class="task-text">{{$category->title}}</div>
+                                    <div class="task-footer">
+                                        <div class="pull-left">
+                                            <a href="/admin/category/{{$category->id}}/edit">
+                                                <span class="fa fa-edit"></span> Edit
+                                            </a>
+                                            
+                                        </div>
+                                        <div class="pull-right">
+                                            <form action="/admin/category/{{$category->id}}/delete" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" type="submit" onclick="confirm('Are you sure??')">
+                                                    <span class="fa fa-trash-o"></span> Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>                                    
+                                </div>  
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+               @else
+                    <p>No Catagories Found <a href="/admin/category/create">Create New Category</a></p>
+                @endif
             </div>      
             <div class="panel-footer">                                
                 

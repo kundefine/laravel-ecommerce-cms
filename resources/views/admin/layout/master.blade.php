@@ -74,7 +74,7 @@
                     </div> 
                     
                     --}}
-
+                    @include('admin.inc.alert-message')
                     @yield('right-section')
                     
 

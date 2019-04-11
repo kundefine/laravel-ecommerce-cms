@@ -23,12 +23,22 @@
         <!-- END THIS PAGE PLUGINS-->        
 
         <!-- START TEMPLATE -->
-        <script type="text/javascript" src={{asset("js/settings.js")}}></script>
+        {{-- <script type="text/javascript" src={{asset("js/settings.js")}}></script> --}}
         
         <script type="text/javascript" src={{asset("js/plugins.js")}}></script>        
         <script type="text/javascript" src={{asset("js/actions.js")}}></script>
         
         <script type="text/javascript" src={{asset("js/demo_dashboard.js")}}></script>
+        <script>
+            (function(){
+                var kListActive = $('ul.x-navigation li.active').parent().parent();
+                if(kListActive.hasClass('xn-openable')) {
+                    kListActive.addClass('active');
+                }
+            }());
+            
+        </script>
+
         <!-- END TEMPLATE -->
 
         @yield('aditional-script')

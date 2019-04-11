@@ -10,9 +10,10 @@
 
 @section('right-section')
 
-<form action="/admin/category/store" id="category_create" method="post">
+<form action="/admin/category/{{$catagory->id}}/update" id="category_create" method="post">
 
 @csrf
+@method('PATCH')
 
 <div class="row">
     <div class="col-md-12">
@@ -69,9 +70,16 @@
                 <div class="form-horizontal" role="form">
                    <div class="form-group">                                        
                         <div class="col-md-12">
-                            {{-- @foreach($menus as $menu)                                                                                                             
-                                <label class="check dpb"><input type="radio" class="iradio" name="menu_id" value="{{$menu->id}}"/>{{$menu->title}}</label>
-                            @endforeach --}}
+                            @foreach($menus as $menu)                                                                                                             
+                                <label class="check dpb">
+                                    <input 
+                                    @if($menu->id == $catagory->menu()->get()->all()[0]->id) checked @endif
+                                    type="radio" 
+                                    class="iradio" 
+                                    name="menu_id" 
+                                    value="{{$menu->id}}"/>{{$menu->title}}
+                                </label>
+                            @endforeach
                         </div>
                     </div>                                               
                 </div>
