@@ -15,8 +15,8 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-        return Catagory::all();
-        return view('admin.category.index');
+        $all_categories = Catagory::orderBy('created_at', 'desc')->get();
+        return view('admin.category.index', compact('all_categories'));
     }
 
     /**
@@ -26,8 +26,8 @@ class CatagoryController extends Controller
      */
     public function create()
     {
-        $menus = Menu::all();
-        $categories = Catagory::all();
+        $menus = Menu::orderBy('created_at', 'desc')->get();
+        $categories = Catagory::orderBy('created_at', 'desc')->get();
         return view('admin.category.create', compact('menus', 'categories'));
     }
 
@@ -43,11 +43,9 @@ class CatagoryController extends Controller
         $child_categories_map = null;
 
         if(count(request('child_categories'))) {
-            
             foreach(request('child_categories') as $id => $value) {
                 $child_categories_id[] = $id;
             }
-            
             $child_categories_map = request('child_categories');
         }
 
@@ -55,9 +53,9 @@ class CatagoryController extends Controller
         Catagory::create([
             'title' => request('category_title'),
             'visibility' => request('visibility'),
-            'child_catagories_id' => $child_categories_id,
-            'child_catagories_json' => $child_categories_map,
-
+            'menu_id' => request('menu_id'),
+            'child_catagories_id' => json_encode($child_categories_id),
+            'child_catagories_json' => json_encode($child_categories_map),
         ]);
         
         return back();
@@ -82,7 +80,9 @@ class CatagoryController extends Controller
      */
     public function edit(Catagory $catagory)
     {
-        //
+        $child_catagories = Catagory::get()->where('id', '!=', $catagory->id);
+        $allready_child = json_decode($catagory->child_catagories_id);
+        return view('admin.category.edit', compact('catagory', 'child_catagories', 'allready_child'));
     }
 
     /**

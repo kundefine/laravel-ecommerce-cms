@@ -20,4 +20,5 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/admin/category', 'CatagoryController@index');
 Route::get('/admin/category/create', 'CatagoryController@create');
+Route::get('/admin/category/{catagory}/edit', 'CatagoryController@edit');
 Route::post('/admin/category/store', 'CatagoryController@store');
