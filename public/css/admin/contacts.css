@@ -1,0 +1,15 @@
+/* CONTACTS */
+.contact-info {
+  float: left;
+  width: 100%;
+}
+.contact-info p {
+  margin-bottom: 5px;
+}
+.contact-info strong {
+  font-size: 13px;
+}
+.contact-info small {
+  font-weight: 700;
+}
+/* END CONTACTS */
