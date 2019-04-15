@@ -1,0 +1,48 @@
+/*======================================================*/
+/*                  Mixins                              */
+/*======================================================*/
+
+
+//Transition
+@mixin transition($args: all 0.3s ease 0s) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+//Box Shadow
+@mixin box-shadow {
+    box-shadow: rgb(18, 22, 28) 0px 0px 10px 0px;
+}
+
+@mixin  box-shadow2 {box-shadow: 0px 3px 5px 2px rgba(0,0,0,0.255);}
+
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -moz-transform: rotate($degrees);
+    -ms-transform: rotate($degrees);
+    -o-transform: rotate($degrees);
+    transform: rotate($degrees);
+}
+
+//Gradient color
+@mixin gradient($deg, $args1, $args2) {
+    background: -webkit-linear-gradient($deg, $args1, $args2);
+    background: -moz-linear-gradient($deg, $args1, $args2);
+    background: -o-linear-gradient($deg, $args1, $args2);
+    background: linear-gradient($deg, $args1, $args2);
+}
+
+@mixin border-gradient2($bg, $args, $args2){
+    background-image: linear-gradient(90deg, $bg, $bg), radial-gradient(circle at top left, $args,$args2);
+    background-origin: border-box;
+    background-clip: content-box, border-box;    
+}
+
+
+@mixin transition-delay ($args: 0.3s){
+    -webkit-transition-delay: $args;
+    -moz-transition-delay: $args;
+    -o-transition-delay: $args;
+    transition-delay: $args;
+}

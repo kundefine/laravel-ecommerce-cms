@@ -39,7 +39,7 @@ class CatagoryController extends Controller
      */
     public function store(Request $request)
     {
-        $child_categories_id = [];
+        $child_categories_id = null;
         $child_categories_map = null;
 
         if(request('child_categories')) {
@@ -83,6 +83,7 @@ class CatagoryController extends Controller
         $child_catagories = Catagory::get()->where('id', '!=', $catagory->id);
         $menus = Menu::all();
         $allready_child = json_decode($catagory->child_catagories_id);
+        if($allready_child == null) $allready_child = [];
         return view('admin.category.edit', compact('catagory', 'child_catagories', 'allready_child', 'menus'));
     }
 
@@ -95,7 +96,7 @@ class CatagoryController extends Controller
      */
     public function update(Request $request, Catagory $catagory)
     {
-        $child_categories_id = [];
+        $child_categories_id = null;
         $child_categories_map = null;
 
         if(request('child_categories')) {

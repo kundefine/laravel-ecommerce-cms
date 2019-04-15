@@ -1,0 +1,109 @@
+/*=============---------------------------==============*/
+/*                   product-catagory                   */
+/*=============---------------------------==============*/
+.product-catagory{
+    .listing-title{
+        .wrap-title{
+            .title-order li{display: inline-block;position: relative;padding: 20px 10px;font-size: 14px;margin: 0;
+
+                &:last-child:after{display: none;}
+
+                &:after{position: absolute;content: '/';right: -5px;top: 50%;transform: translate(0, -50%);-webkit-transform: translate(0, -50%);-moz-transform: translate(0, -50%);-ms-transform: translate(0, -50%);-o-transform: translate(0, -50%);}
+                a{
+                    color: black;
+                }
+            }
+        }
+    }
+
+    //Catagory Bottom
+    .left-side-bar{
+        .filter-section{border-top: 1px solid $border;
+   
+            .single-filter-items{
+                .heading{border-bottom: 1px solid $border;
+
+                    button{font-size: 16px;color: $n-black;font-weight: 600;display: block;width:100%;text-align:left;padding:15px 0;
+                        &.btn-link.collapsed{
+                            .icon{
+                                &.fa-plus{display:block;}
+                                &.fa-minus{display:none;}
+                            }
+                        }
+                        &:hover{text-decoration: none;}
+                        .icon{float: right;
+                            &.fa-plus{display:none;}
+                            &.fa-minus{display:block;}
+                        }                    
+                    }
+                }
+                .card-body{display: block;border-bottom: 1px solid $border;
+
+                    .single-items{display: block;padding: 10px 0;width: 100%;
+
+                        input{display: inline-block;}
+                        span{font-size: 16px;}
+                    }
+                }
+            }
+        }
+    }
+
+    //Catagory Bottom
+    .right-side-product-area{position: relative;
+
+        .page-name{font-size: 25px;font-weight:400;}
+        .product-show-detals{text-align: right;font-weight: 400;text-transform: capitalize;font-size: 18px;
+            span{font-weight: 600;}
+        }
+
+        .short-name-area{
+            border-top: 1px solid $border;
+            border-bottom: 1px solid $border;
+            padding: 10px 0;
+            
+            .short-type{
+
+                span{font-size: 16px;text-transform: capitalize;}
+                select{font-size: 16px;padding: 10px 20px;color: $n-black;border: 1px solid $border;}
+            }
+        }
+
+        .product-catagory-list{
+            .single-product{margin-bottom: 30px;text-align: center;padding: 10px;position: relative;
+                .top-pup{position: absolute;width: 50px;height: 50px;background-color: #ea7122;color: $white;line-height: 50px;text-transform: uppercase;font-size: 16px;font-weight: 600;border-radius: 50%;left: 20px;top: 20px;
+                }
+                .web-name{font-size: 16px;margin-top: 20px;margin-bottom: 0;}
+                .product-name{font-size: 16px;margin: 10px 0;font-weight: 400;}
+                .price{font-size: 18px;margin: 10px 0;font-weight: 400;
+                    del{margin-right: 10px;}
+                    ins{font-weight: 600;color:#ea7122;text-decoration: none;}
+                }
+            }
+        }
+
+        //Catagory Bottom
+        .catagory-bottom{display: block;margin: 30px 0;
+
+            .pagination-num{
+
+                .page-num{display: inline-block;
+
+                    li{display: inline-block;
+
+                        a{display: inline-block;border: 1px solid #00aec7;color: #00aec7;width: 40px;font-size: 16px;height: 40px;line-height: 40px;text-align: center;
+
+                            &:hover, &.active{background-color:#00aec7;color: $white;}
+                        }
+                    }
+                }
+                .next-button{display: inline-block;float: right;
+
+                    .butn_next{display: inline-block;border: 1px solid #00aec7;font-size: 16px;color: #00aec7;padding: 10px 20px;text-align: center;
+                        &:hover{background-color:#00aec7;color: $white;}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,74 @@
+/*=============---------------------------==============*/
+/*               	  Footer Area                       */
+/*=============---------------------------==============*/
+footer.footer-area{background: $white;
+    border-top: 1px solid $border2;
+
+    .email-subscription-area{
+        position: relative;
+        padding: 30px 0; 
+        border-bottom: 1px solid $border;
+        
+        h2{
+            font-size: 25px;
+            font-weight: 400;
+            text-transform: initial;
+            color: #607D8B;
+
+            .mail-icon{margin-right: 10px;}
+        }
+        .email-subscription-box{
+            background: #fafafa;
+            display: block;
+            border: 1px solid $border;
+            padding: 0;
+            margin: 0;
+
+            input{padding: 15px 0;width: calc(100% - 100px); border: 0px solid transparent;margin: 0;background: transparent;font-size: 16px;color: $n-black;}
+            button{color: $n-black;border: none;background: none;font-size: 18px;font-weight: 400;text-transform: capitalize;color: #607D8B;cursor: pointer;}
+        }
+    }
+    .link-row-area{background: #fafafa;border-bottom: 1px solid $border;padding: 30px 0;
+
+        .single-row-items{display: block;
+
+            .row-links{list-style: none;display: block;
+
+                li{
+                    display: block;
+
+                    a{display: block;color: #607D8B;font-size: 18px;font-weight: 300;line-height: 30px;}
+                }
+            }
+            .icon{
+                display: inline-block;
+                vertical-align: text-bottom;
+                max-width: 60px;
+                height: auto;
+                margin-top: 15px;
+            }
+            h3{font-size: 18px;display: inline-block;font-weight: 600;max-width: calc(100% - 65px);line-height: 40px;
+            span{display: block;font-size: 80%;line-height: 16px;font-weight: 400;}
+            }
+        }
+
+        .copyright-area{
+            text-align: center;
+            h2{font-size: 18px;font-weight: 400;text-transform: uppercase;}
+        }
+        &.footer-bottom{
+            .logo-col{
+                position: relative;
+
+                img{height: 30px;width:auto;margin-right: 5px;}
+            }
+            .social-icons{
+                display: block;
+
+                a{color: $n-black;width: 40px;height: 40px;line-height: 40px;font-size: 25px;display: inline-block;text-align: center;}
+
+            }
+        }
+    }
+
+}

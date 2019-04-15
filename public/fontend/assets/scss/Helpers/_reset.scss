@@ -1,0 +1,29 @@
+/*====================================================*/
+/*                    Reset Css                       */
+/*====================================================*/
+body{
+    font-size: 12px;
+    font-weight: 400;
+    font-family: $normal;
+    background: $white;
+    color: #455A64;
+}
+
+html, body{height: 100%;}
+
+ul{list-style: none;padding: 0;margin: 0;}
+
+a, a:hover{text-decoration: none;}
+
+h1, h2, h3, h4, h5, h6{font-family: $normal;font-weight: 700;color: #455A64;}
+
+h1{font-size: 42px;}
+h2{font-size: 36px;}
+h3{font-size: 30px;}
+h4{font-size: 24px;}
+h5{font-size: 18px;}
+h6{font-size: 16px;}
+
+img{max-width: 100%;}
+//Focus
+button:focus, a:focus, textarea:focus, input:focus, .form-control:focus, .btn:focus{outline: none;box-shadow: none;}

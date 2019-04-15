@@ -39,6 +39,16 @@
                     </li>
 
                     <li class="xn-openable">
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Menus</span></a>
+                        <ul>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/menu";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/menu"><span class="fa fa-user"></span>All Menu</a></li>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/menu/create";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/menu/create"><span class="fa fa-image"></span>Add Menu</a></li>                        
+                        </ul>
+                    </li>
+
+                    <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Categories</span></a>
                         <ul>
                             <?php $current_url = url()->current(); $my_url = url('') . "/admin/category";?>

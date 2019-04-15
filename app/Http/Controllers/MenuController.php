@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
+use App\Catagory;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -14,7 +15,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.menu.index');
     }
 
     /**
@@ -24,7 +25,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Catagory::where('visibility', '=', '1')->get();
+        return view('admin.menu.create', compact('categories'));
     }
 
     /**
@@ -35,7 +37,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(request()->all());
     }
 
     /**

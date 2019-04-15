@@ -1,0 +1,26 @@
+/*=============---------------------------==============*/
+/*               	  Color Variables  		            */
+/*=============---------------------------==============*/
+
+//Color
+
+$white: #ffffff;
+$black:#222222;
+$n-white: #C1C6C8;
+$border: #E0E0E0;
+$border2: #f7f7f7;
+$primary-color: #607D8B;
+$n-black: #6d6d6d;
+
+$normal: 'Noto Sans', Helvetica_normal, Arial, sans-serif;
+
+@font-face{
+  font-family: Helvetica_normal;
+  src: url(../fonts/HelveticaNeueLTPro-Lt.otf);
+  font-weight: 400;
+}
+@font-face{
+  font-family: Helvetica_bold;
+  src: url(../fonts/HelveticaNeueLTPro-Bd.otf);
+  font-weight: 400;
+}

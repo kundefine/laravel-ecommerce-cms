@@ -24,3 +24,8 @@ Route::get('/admin/category/{catagory}/edit', 'CatagoryController@edit');
 Route::post('/admin/category/store', 'CatagoryController@store');
 Route::patch('/admin/category/{catagory}/update', 'CatagoryController@update');
 Route::delete('/admin/category/{catagory}/delete', 'CatagoryController@destroy');
+
+Route::get('/admin/menu', 'MenuController@index');
+Route::get('/admin/menu/create', 'MenuController@create');
+Route::post('/admin/menu/store', 'MenuController@store');
+
