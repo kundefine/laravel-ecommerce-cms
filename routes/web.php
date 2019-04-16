@@ -11,9 +11,12 @@
 |
 */
 
+use App\Menu;
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    $menus = Menu::where('visibility', '=', '1')->get();
+    return view('fontend.index', compact('menus'));
+})->name('home');
 
 
 Route::get('/admin', 'AdminController@index');
@@ -27,5 +30,10 @@ Route::delete('/admin/category/{catagory}/delete', 'CatagoryController@destroy')
 
 Route::get('/admin/menu', 'MenuController@index');
 Route::get('/admin/menu/create', 'MenuController@create');
+Route::get('/admin/menu/{menu}/edit', 'MenuController@edit');
+
+
 Route::post('/admin/menu/store', 'MenuController@store');
+Route::patch('/admin/menu/{menu}/update', 'MenuController@update');
+Route::delete('/admin/menu/{menu}/delete', 'MenuController@destroy');
 

@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    
-    public function catagories() {
-        return $this->hasMany('App\Catagory');
+    protected $guarded = ['id'];
+
+    public function catagory() {
+        return $this->belongsTo('App\Catagory', "cat_id", "id");
     }
+
+    
 }

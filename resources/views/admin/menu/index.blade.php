@@ -21,21 +21,21 @@
                 </ul>                                
             </div>
             <div class="panel-body">
-                {{-- @if(count($all_categories))
-                    @foreach($all_categories as $category)
+               @if(count($all_menus))
+                    @foreach($all_menus as $menu)
                         <div class="col-md-4">
                             <div class="tasks" id="tasks_progreess">
                                 <div class="task-item task-primary">
-                                    <div class="task-text">{{$category->title}}</div>
+                                    <div class="task-text">{{$menu->title}}</div>
                                     <div class="task-footer">
                                         <div class="pull-left">
-                                            <a href="/admin/category/{{$category->id}}/edit">
+                                            <a href="/admin/menu/{{$menu->id}}/edit">
                                                 <span class="fa fa-edit"></span> Edit
                                             </a>
                                             
                                         </div>
                                         <div class="pull-right">
-                                            <form action="/admin/category/{{$category->id}}/delete" method="POST">
+                                            <form action="/admin/menu/{{$menu->id}}/delete" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger" type="submit" onclick="confirm('Are you sure??')">
@@ -49,8 +49,8 @@
                         </div>
                     @endforeach
                @else
-                    <p>No Catagories Found <a href="/admin/category/create">Create New Category</a></p>
-                @endif --}}
+                    <p>No Catagories Found <a href="/admin/menu/create">Create New Menu</a></p>
+                @endif 
             </div>      
             <div class="panel-footer">                                
                 

@@ -17,7 +17,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('admin.menu.index');
+        $all_menus = Menu::orderBy('created_at', 'desc')->get();
+        return view('admin.menu.index', compact('all_menus'));
     }
 
     /**
@@ -51,7 +52,9 @@ class MenuController extends Controller
         if ($request->hasFile('feature_image')) {
             //
             $file = request()->file('feature_image');
-            $path = $request->file('feature_image')->storeAs('public/menu_feature_image', request('menu_type') . '-' . time() . '.' . $file->getClientOriginalExtension());
+            $path = $request->file('feature_image')->storeAs('menu_feature_image', request('menu_type') . '-' . time() . '.' . $file->getClientOriginalExtension());
+            $renameFileName = str_replace("menu_feature_image/", "", $path);
+            $file->move(base_path('\public\menu_feature_image'), $renameFileName);
         }
 
         $menu = new Menu();
@@ -59,7 +62,7 @@ class MenuController extends Controller
 
         $menu->title = request('menu_title');
         $menu->feature_image = $path;
-        $menu->link = request('menu_link');
+        $menu->link = 'http://' . request('menu_link');
         $menu->visibility = request('visibility');
         $menu->menu_type = request('menu_type');
         if(request('menu_type') === 'category_link') $menu->cat_id = request('cat_id');
@@ -90,7 +93,7 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        dd($menu);
     }
 
     /**
@@ -113,6 +116,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        if($menu->delete())
+            return back()->with('success', 'Delete Successfull');
     }
 }
