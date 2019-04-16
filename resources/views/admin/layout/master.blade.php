@@ -18,9 +18,8 @@
 
 
                 <!-- START BREADCRUMB -->
-                @include('admin.inc.breadcrumb')
+                {{-- @include('admin.inc.breadcrumb') --}}
                 <!-- END BREADCRUMB -->                       
-                
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
                     
@@ -74,7 +73,9 @@
                     </div> 
                     
                     --}}
+                    <br><br>
                     @include('admin.inc.alert-message')
+                    <br><br>
                     @yield('right-section')
                     
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use App\Menu;
 use App\Catagory;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -27,6 +29,7 @@ class MenuController extends Controller
     {
         $categories = Catagory::where('visibility', '=', '1')->get();
         return view('admin.menu.create', compact('categories'));
+
     }
 
     /**
@@ -37,7 +40,35 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        dd(request()->all());
+        $request->validate([
+            'feature_image' => 'mimes:jpeg,bmp,png',
+            'menu_title' => 'required|min:3',
+            'menu_link' => 'required',
+            'menu_type' => 'required',
+            'visibility' => 'required'
+        ]);
+        $path = null;
+        if ($request->hasFile('feature_image')) {
+            //
+            $file = request()->file('feature_image');
+            $path = $request->file('feature_image')->storeAs('public/menu_feature_image', request('menu_type') . '-' . time() . '.' . $file->getClientOriginalExtension());
+        }
+
+        $menu = new Menu();
+
+
+        $menu->title = request('menu_title');
+        $menu->feature_image = $path;
+        $menu->link = request('menu_link');
+        $menu->visibility = request('visibility');
+        $menu->menu_type = request('menu_type');
+        if(request('menu_type') === 'category_link') $menu->cat_id = request('cat_id');
+        if(request('menu_type') === 'page_link') $menu->page_id = request('page_id');
+
+        $menu->save();
+
+        return back()->with('success', 'Menu has been Created successfully.');
+       
     }
 
     /**

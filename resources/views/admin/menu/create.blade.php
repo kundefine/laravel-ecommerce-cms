@@ -9,6 +9,7 @@
     <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap-select.js")}}></script>
     <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap-file-input.js")}}></script>
     <script>
+        // menu type action
         $('input[name="menu_type"]').click(function(){
             if($(this).val() === "page_link"){
                 // hide others select box
@@ -19,6 +20,7 @@
                 $('#select_page select').removeAttr('disabled');
                 // reset menu title
                 $('input[name="menu_title"]').val('');
+                $('#menu_link').val('');
             } else if( $(this).val() === 'category_link') {
                 // hide others select box
                 $('#select_page').css('display', 'none');
@@ -28,6 +30,7 @@
                 $('#select_category select').removeAttr('disabled');
                 // reset menu title
                 $('input[name="menu_title"]').val('');
+                $('#menu_link').val('');
                 console.log('cat link');
             } else if( $(this).val() === 'custom_link') {
                 // hide all select box
@@ -39,6 +42,33 @@
 
                 // reset menu title
                 $('input[name="menu_title"]').val('');
+                $('#menu_link').val('');
+            }
+        });
+
+        // page select action
+        $('#select_page select').change(function(){
+            console.log($(this).val());
+            if($(this).val() !== "null") {
+                $('input[name="menu_title"]').val($('#select_page select option:selected').text());
+                $('#menu_link').val('');
+                $('#menu_link').val(window.location.host + '/page/'  + $(this).val());
+            } else {
+                $('input[name="menu_title"]').val('');
+                $('#menu_link').val('');
+            }
+        });
+
+        // category select action
+        $('#select_category select').change(function(){
+            console.log($(this).val());
+            if($(this).val() !== "null") {
+                $('input[name="menu_title"]').val($('#select_category select option:selected').text());
+                $('#menu_link').val('');
+                $('#menu_link').val(window.location.host + '/category/' + $(this).val());
+            } else {
+                $('input[name="menu_title"]').val('');
+                $('#menu_link').val('');
             }
         });
     </script>
@@ -62,10 +92,11 @@
             </div>
             <div class="panel-body">
                 <div class="form-horizontal" role="form">     
-                    <div class="col-md-3">                                                                                                
+                    <div class="col-md-3">
+                        <h5>Menu Type</h5>                                                                                                
                         <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="custom_link"/> Custom Link</label>
                         <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="page_link"/> Add Page</label>
-                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="category_link"/>Add Category</label>
+                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="category_link"/> Add Category</label>
                     </div>
 
                     <div class="col-md-9">
@@ -75,10 +106,11 @@
                                         <label class="col-md-2 control-label">Select Page</label>
                                         <div class="col-md-10">                                                                                
                                             <select class="form-control select" data-live-search="true" name="page_id">
-                                                <option value="page_one">Page One</option>
-                                                <option value="page_two">Page Two</option>
-                                                <option value="page_three">Page Three</option>
-                                                <option value="page_four">Page Four</option>
+                                                <option value="null">Select One</option>
+                                                <option value="1">Page One</option>
+                                                <option value="2">Page Two</option>
+                                                <option value="3">Page Three</option>
+                                                <option value="4">Page Four</option>
                                             </select>
                                         </div>
                                     </div>
@@ -87,6 +119,7 @@
                                         <label class="col-md-2 control-label">Select Category</label>
                                         <div class="col-md-10">                                                                                
                                             <select class="form-control select" data-live-search="true" name="cat_id">
+                                                <option value="null">Select One</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->title}}</option>
                                             @endforeach
@@ -107,14 +140,14 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Add Link</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="Menu Title" name="menu_link"/>
+                                        <input id="menu_link" type="text" class="form-control" placeholder="Your link" name="menu_link"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Add Feature Image</label>
                                     <div class="col-md-10">
-                                        <input type="file" class="fileinput" name="feature_image[]" id="feature_image" multiple/>
+                                        <input type="file" class="fileinput" name="feature_image" id="feature_image"/>
                                     </div>
                                 </div>
 
@@ -127,7 +160,6 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label class="check"><input type="radio" class="iradio" name="visibility" checked="checked" value="0"/> Off</label>
-                                        
                                         </div>
                                     </div>
                                         

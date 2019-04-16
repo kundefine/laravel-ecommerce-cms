@@ -41,7 +41,6 @@ class CatagoryController extends Controller
     {
         $child_categories_id = null;
         $child_categories_map = null;
-
         if(request('child_categories')) {
             foreach(request('child_categories') as $id => $value) {
                 $child_categories_id[] = $id;
@@ -98,7 +97,6 @@ class CatagoryController extends Controller
     {
         $child_categories_id = null;
         $child_categories_map = null;
-
         if(request('child_categories')) {
             foreach(request('child_categories') as $id => $value) {
                 $child_categories_id[] = $id;
@@ -111,9 +109,7 @@ class CatagoryController extends Controller
         $catagory->menu_id = request('menu_id');
         $catagory->child_catagories_id = json_encode($child_categories_id);
         $catagory->child_catagories_json = json_encode($child_categories_map);
-
         $catagory->save();
-        
         return back()->with('success', 'Category has been Updated successfully.');
     }
 
@@ -126,7 +122,6 @@ class CatagoryController extends Controller
     public function destroy(Catagory $catagory)
     {
         $catagory->delete();
-
         return back()->with('success', 'Delete Successfull');
     }
 }

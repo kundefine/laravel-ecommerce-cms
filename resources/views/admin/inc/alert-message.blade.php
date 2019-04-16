@@ -30,6 +30,14 @@
             <strong>Well done!</strong>  {{ session('danger') }}
         </div>
     @endif
+    @if (count($errors))
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            @foreach($errors->all() as $error)
+                <p>{{$error}}</p>
+            @endforeach
+        </div>
+    @endif
 </div>
 
                         
