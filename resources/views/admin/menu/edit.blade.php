@@ -94,15 +94,15 @@
                 <div class="form-horizontal" role="form">     
                     <div class="col-md-3">
                         <h5>Menu Type</h5>                                                                                                
-                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="custom_link"/> Custom Link</label>
-                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="page_link"/> Add Page</label>
-                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="category_link"/> Add Category</label>
+                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="custom_link" @if($menu->menu_type == "custom_link") checked="checked" @endif/> Custom Link</label>
+                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="page_link" @if($menu->menu_type == "page_link") checked="checked" @endif/> Add Page</label>
+                        <label class="check dpb"><input type="radio" class="iradio" name="menu_type" value="category_link" @if($menu->menu_type == "category_link") checked="checked" @endif/> Add Category</label>
                     </div>
 
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12">
-                                    <div id="select_page" class="form-group dpn">
+                                    <div id="select_page" class="form-group {{ $menu->menu_type == "page_link" ? '' : 'dpn' }}">
                                         <label class="col-md-2 control-label">Select Page</label>
                                         <div class="col-md-10">                                                                                
                                             <select class="form-control select" data-live-search="true" name="page_id">
@@ -115,13 +115,17 @@
                                         </div>
                                     </div>
                                 @if(count( $categories ))
-                                    <div id="select_category" class="form-group dpn">
+                                    <div id="select_category" class="form-group {{ $menu->menu_type == "category_link" ? '' : 'dpn' }}">
                                         <label class="col-md-2 control-label">Select Category</label>
                                         <div class="col-md-10">                                                                                
                                             <select class="form-control select" data-live-search="true" name="cat_id">
                                                 <option value="null">Select One</option>
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                                @if( $menu->menu_type == "category_link" && $menu->cat_id == $category->id )
+                                                    <option value="{{$category->id}}" selected>{{$category->title}}</option>
+                                                @else
+                                                 <option value="{{$category->id}}">{{$category->title}}</option>
+                                                @endif
                                             @endforeach
                                             </select>
                                         </div>
@@ -133,19 +137,28 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Menu Title</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" placeholder="Menu Title" name="menu_title"/>
+                                        <input type="text" class="form-control" placeholder="Menu Title" name="menu_title" value="{{ $menu->title }}"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Add Link</label>
                                     <div class="col-md-10">
-                                        <input id="menu_link" type="text" class="form-control" placeholder="Your link" name="menu_link"/>
+                                        <input id="menu_link" type="text" class="form-control" placeholder="Your link" name="menu_link" value="{{ $menu->link }}"/>
                                     </div>
                                 </div>
 
+                                
+                                @if( $menu->feature_image == null)
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Feature Image</label>
+                                        <div class="col-md-10">
+                                            <img src="/{{ $menu->feature_image }}" alt="" width="180" style="border: 1px solid #ddd; padding: 3px">
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Add Feature Image</label>
+                                    <label class="col-md-2 control-label">Change Feature Image</label>
                                     <div class="col-md-10">
                                         <input type="file" class="fileinput" name="feature_image" id="feature_image"/>
                                     </div>
@@ -155,11 +168,11 @@
                                     <label class="col-md-2 control-label">Visibility</label>
                                     <div class="col-md-10">
                                         <div class="col-md-2">
-                                            <label class="check"><input type="radio" class="iradio" name="visibility" value="1"/> On</label>
+                                            <label class="check"><input type="radio" class="iradio" name="visibility" @if($menu->visibility == 1) checked="checked" @endif value="1"/> On</label>
                                         
                                         </div>
                                         <div class="col-md-2">
-                                            <label class="check"><input type="radio" class="iradio" name="visibility" checked="checked" value="0"/> Off</label>
+                                            <label class="check"><input type="radio" class="iradio" name="visibility" @if($menu->visibility == 0) checked="checked" @endif value="0"/> Off</label>
                                         </div>
                                     </div>
                                         
@@ -180,7 +193,7 @@
 
 
     <div class="col-md-4 col-md-offset-4">
-        <button type="submit" class="btn btn-primary btn-block">Create Menu</button>
+        <button type="submit" class="btn btn-primary btn-block">Edit Menu</button>
     </div>
 </div>
 

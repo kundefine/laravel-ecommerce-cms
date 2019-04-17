@@ -93,7 +93,10 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        dd($menu);
+        $categories = Catagory::where('visibility', '=', '1')->get();
+        
+
+        return view('admin.menu.edit', compact('categories', 'menu'));
     }
 
     /**

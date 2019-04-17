@@ -31,9 +31,11 @@ Route::delete('/admin/category/{catagory}/delete', 'CatagoryController@destroy')
 Route::get('/admin/menu', 'MenuController@index');
 Route::get('/admin/menu/create', 'MenuController@create');
 Route::get('/admin/menu/{menu}/edit', 'MenuController@edit');
-
-
 Route::post('/admin/menu/store', 'MenuController@store');
 Route::patch('/admin/menu/{menu}/update', 'MenuController@update');
 Route::delete('/admin/menu/{menu}/delete', 'MenuController@destroy');
 
+Route::get('/admin/product', 'ProductController@index');
+Route::get('/admin/product/create', 'ProductController@create');
+
+Route::post('/admin/product/store', 'ProductController@store');

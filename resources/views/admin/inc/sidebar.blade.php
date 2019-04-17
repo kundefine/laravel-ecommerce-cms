@@ -60,9 +60,10 @@
                     <li class="xn-openable">
                         <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Products</span></a>
                         <ul>
-                            <li><a href="pages-profile.html"><span class="fa fa-user"></span>All Product</a></li>
-                            <li><a href="pages-gallery.html"><span class="fa fa-image"></span>Add Product</a></li>                     
-                            <li><a href="pages-gallery.html"><span class="fa fa-orger"></span>Orders</a></li>                     
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/product";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/product"><span class="fa fa-user"></span>All Product</a></li>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/product/create";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/product/create"><span class="fa fa-image"></span>Add Product</a></li>                        
                         </ul>
                     </li>
                     <li class="xn-title">Components</li>

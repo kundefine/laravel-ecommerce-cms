@@ -15,13 +15,13 @@
         <!-- START PANEL WITH CONTROL CLASSES -->
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">All Category</h3>
+                <h3 class="panel-title">All Product</h3>
                 <ul class="panel-controls">
                     <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                 </ul>                                
             </div>
             <div class="panel-body">
-                @if(count($all_categories))
+                {{-- @if(count($all_categories))
                     @foreach($all_categories as $category)
                         <div class="col-md-4">
                             <div class="tasks" id="tasks_progreess">
@@ -38,7 +38,7 @@
                                             <form action="/admin/category/{{$category->id}}/delete" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure??')">
+                                                <button class="btn btn-sm btn-danger" type="submit" onclick="confirm('Are you sure??')">
                                                     <span class="fa fa-trash-o"></span> Delete
                                                 </button>
                                             </form>
@@ -50,7 +50,7 @@
                     @endforeach
                @else
                     <p>No Catagories Found <a href="/admin/category/create">Create New Category</a></p>
-                @endif
+                @endif --}}
             </div>      
             <div class="panel-footer">                                
                 
