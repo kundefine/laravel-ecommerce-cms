@@ -1,0 +1,45 @@
+/*=========================================================
+Template Name: Title
+Author Name: rjshikto
+Author URL: rjshikto@gmail.com
+==========================================================*/
+
+
+/* ----------------------------------------------------------------
+    		[ All Css Plugins & Helper Classes File ]
+-----------------------------------------------------------------*/
+
+/* == bootstrap == */
+@import url("../css/bootstrap.min.css");
+
+/* == fontawesome == */
+@import url("../css/fontawesome.min.css");
+
+/* == Uikit Css == */
+@import url("../css/uikit.min.css");
+
+/* == Custom Css == */
+@import url("../css/main.css");
+
+
+/* ----------------------------------------------------------------
+			[ Add Sass File ]
+-----------------------------------------------------------------*/
+
+//Add Variables, Functions, Mixins and 
+@import "../scss/Helpers/variables";
+@import "../scss/Helpers/keyframes";
+@import "../scss/Helpers/mixins";
+@import "../scss/Helpers/reset";
+
+//Add Preeloader, Header, Footer and Navigation
+@import "../scss/Components/header";
+@import "../scss/Components/footer";
+
+
+//Add Sections
+@import"../scss/Sections/product-catagory";
+@import"../scss/Sections/home";
+@import"../scss/Sections/order_confirmation";
+@import"../scss/Sections/order";
+

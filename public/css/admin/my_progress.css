@@ -1,0 +1,40 @@
+
+/* my progress bar */
+.mpb {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.mpb.bottom {
+  top: auto;
+  bottom: 0px;
+}
+.mpb .mpb-progress {
+  background: #FFF;
+  display: block;
+  float: left;
+  height: 5px;
+}
+.mpb .mpb-progress.mpb-primary {
+  background: #33414e;
+}
+.mpb .mpb-progress.mpb-warning {
+  background: #fea223;
+}
+.mpb .mpb-progress.mpb-success {
+  background: #95b75d;
+}
+.mpb .mpb-progress.mpb-info {
+  background: #3fbae4;
+}
+.mpb .mpb-progress.mpb-danger {
+  background: #b64645;
+}
+/* eof my progress bar */

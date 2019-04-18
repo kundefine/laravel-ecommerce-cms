@@ -1,0 +1,20 @@
+.home-content{
+
+    .widget-static-block{
+
+        .single-image{
+            display: block;
+
+            .double-img{
+                width: calc(50% - 2px);
+                display: inline-block;
+                height: auto;
+            }
+        }
+    }
+}
+.widget-static-image-area{
+    padding: 20px 0;
+
+    .single-items{display: block;}
+}

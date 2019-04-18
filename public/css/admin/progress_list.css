@@ -1,0 +1,12 @@
+/* Progress list */
+.progress-list {
+    float: left;
+    width: 100%;
+    padding: 0px 5px;
+    font-size: 11px;
+  }
+  .progress-list .progress {
+    clear: both;
+    margin-top: 20px;
+  }
+  /* end progress list*/
