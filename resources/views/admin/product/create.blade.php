@@ -164,7 +164,11 @@
                                         </ul>                                
                                     </div>
                                     <div class="panel-body">                                 
+<<<<<<< HEAD
                                         <div action="#" class="dropzone dropzone-mini" id="product_thumbnail"></div> 
+=======
+                                        {{-- <div action="#" class="dropzone dropzone-mini" id="product_thumbnail"></div>                            --}}
+>>>>>>> refs/remotes/origin/master
                                     </div>      
                                     <div class="panel-footer">                                
                                         
@@ -261,7 +265,11 @@
         <script type="text/javascript" src={{asset("js/actions.js")}}></script>
         <!-- END TEMPLATE -->
         
+<<<<<<< HEAD
         <!-- <script>
+=======
+        <script>
+>>>>>>> refs/remotes/origin/master
             $(function(){
                 $("#file-simple").fileinput({
                         showUpload: false,
@@ -283,6 +291,7 @@
                     },200);                    
                 });                
             });            
+<<<<<<< HEAD
         </script> -->
 
 
@@ -349,6 +358,15 @@
 
             
 
+=======
+        </script>
+        <script>
+
+      
+            
+            $("div#product_images").dropzone({ url: "/admin/product/store" });
+            
+>>>>>>> refs/remotes/origin/master
         </script>
 
     <!-- END SCRIPTS -->         

@@ -39,5 +39,8 @@ Route::get('/admin/product', 'ProductController@index');
 Route::get('/admin/product/create', 'ProductController@create');
 
 Route::post('/admin/product/store', 'ProductController@store');
+<<<<<<< HEAD
 
 Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
+=======
+>>>>>>> refs/remotes/origin/master
