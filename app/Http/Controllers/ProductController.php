@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> refs/remotes/origin/master
 
 
 use App\Product;
@@ -41,7 +38,6 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
 
     
 
@@ -76,13 +72,6 @@ class ProductController extends Controller
 
 
 
-=======
-    public function store(Request $request)
-    {
-        dd(request()->file('file'));
-    }
-
->>>>>>> refs/remotes/origin/master
     /**
      * Display the specified resource.
      *
