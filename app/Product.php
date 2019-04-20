@@ -8,6 +8,10 @@ class Product extends Model
 {
     
 
+    public function category() {
+        return $this->belongsTo('App\Catagory', 'cat_id', 'id');
+    }
+
 
     // check slug exits
     public static function checkSlugExits($slug_title) {

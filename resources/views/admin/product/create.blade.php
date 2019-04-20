@@ -68,7 +68,7 @@
                                                                 <label class="col-md-2 control-label">Select Category</label>
                                                                 <div class="col-md-10">                                                                                
                                                                     <select class="form-control select" data-live-search="true" name="cat_id">
-                                                                        <option value="null">Select One</option>
+                                                                        <option value="{{null}}">Select One</option>
                                                                     @foreach($categories as $category)
                                                                         <option value="{{$category->id}}">{{$category->title}}</option>
                                                                     @endforeach
@@ -148,22 +148,89 @@
                         
 
                             <div class="col-md-4">
-                                <!-- START PANEL WITH CONTROL CLASSES -->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Add Product Thumbnail</h3>
-                                        <ul class="panel-controls">
-                                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                        </ul>                                
+
+                                {{-- product mesuerment --}}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- START PANEL WITH CONTROL CLASSES -->
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Add Product Measurement Info</h3>
+                                                <ul class="panel-controls">
+                                                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                                                </ul>                                
+                                            </div>
+                                            <div class="panel-body"> 
+                                                <div class="row">
+                                                    <div id="select_category" class="form-group dpn">
+                                                        <label class="col-md-2 control-label">Available Color</label>
+                                                        <div class="col-md-10">                                                                                
+                                                            <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[color_name][]">
+                                                            <option value="null" label="">Select One</option>
+                                                            @foreach($colors as $color_name => $color_hex)
+                                                                <?php 
+                                                                    $color_data_content = "<span style=\"background:{$color_name};padding:0px 10px; margin-right: 20px\" ></span>" . $color_name
+                                                                ?>
+                                                                <option  value="{{$color_name}}" data-content="{{$color_data_content}}"></option>
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>                                
+                                                   
+
+                                                <div class="row">
+                                                    <div id="select_category" class="form-group dpn">
+                                                        <label class="col-md-2 control-label">Available Size</label>
+                                                        <div class="col-md-10">                                                                                
+                                                            <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[size][]">
+                                                            <option value="{{null}}" label="">Select One</option>
+                                                            @foreach($sizes as $cloth => $size_cat)
+                                                                
+                                                                @foreach($size_cat['babies'] as $size)
+                                                                <option  value="{{$size}}">
+                                                                    {{$size}}
+                                                                </option>
+                                                                @endforeach
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 
+
+
+                                            </div>      
+                                            <div class="panel-footer">                                
+                                                
+                                            </div>                            
+                                        </div>
+                                        <!-- END PANEL WITH CONTROL CLASSES -->
                                     </div>
-                                    <div class="panel-body">                                 
-                                        <div action="#" class="dropzone dropzone-mini" id="product_thumbnail"></div> 
-                                    </div>      
-                                    <div class="panel-footer">                                
-                                        
-                                    </div>                            
                                 </div>
-                                <!-- END PANEL WITH CONTROL CLASSES -->
+
+
+                                {{-- product thumbnail --}}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- START PANEL WITH CONTROL CLASSES -->
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Add Product Thumbnail</h3>
+                                                <ul class="panel-controls">
+                                                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                                                </ul>                                
+                                            </div>
+                                            <div class="panel-body">                                 
+                                                <div action="#" class="dropzone dropzone-mini" id="product_thumbnail"></div> 
+                                            </div>      
+                                            <div class="panel-footer">                                
+                                                
+                                            </div>                            
+                                        </div>
+                                        <!-- END PANEL WITH CONTROL CLASSES -->
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -281,14 +348,70 @@
 
         <script>
             
-
+            // product thumbnail
             $(document).ready(function(){
                 Dropzone.autoDiscover = false;
                 var fileList = [];
                 var i = 0;
-                $("div#product_thumbnail").dropzone({ url: "/admin/product/else", });
+
+                $("div#product_thumbnail").dropzone({ 
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    init: function() {
+                        this.on("success", function(file, res) {
+                            fileList[i] = {
+                                "fileId" : i,
+                                "serverFileName" : res.filename, 
+                                "fileName" : file.name
+                            };
+                            i++;
+                            console.log(fileList);
+                        });
+                        this.on('sending', function(file, xhr, formData){
+                            formData.append('thumbnail', 'thumbnail');
+                        })
+                    },
+                    maxFiles: 1,
+                    paramName: "product_images",
+                    url: "/admin/product/add-product-images",
+                    acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                    addRemoveLinks: true,
+                    timeout: 1000,
+                    renameFile: function (file) {
+                        let newName = new Date().getTime() + '_' + file.name;
+                        return newName;
+                    },
+                    removedfile: function(file) {
+                        var rmvFile = "";
+                        for(f=0;f<fileList.length;f++){
+                            if(fileList[f].serverFileName.search("thumbnail") !== -1)
+                            {
+                                rmvFile = fileList[f].serverFileName;
+
+                            }
+                        }
+                        var name = rmvFile;
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                            },
+                            type: 'DELETE',
+                            url: '{{ url("/admin/product/deleteImage") }}',
+                            data: {filename: name, thumbnail: 'thumbnail'},
+                            success: function (data){
+                                console.log(fileList);
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
+                        var fileRef;
+                        return (fileRef = file.previewElement) != null ? fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                    },
+                });
                 
-                
+                // product all images
                 $("div#product_images").dropzone({ 
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -301,6 +424,7 @@
                                 "fileName" : file.name
                             };
                             i++;
+                            console.log(fileList);
                         });
                     },
                     paramName: "product_images",
@@ -331,6 +455,7 @@
                             data: {filename: name},
                             success: function (data){
                                 console.log("File has been successfully removed!!");
+                                console.log(fileList);
                             },
                             error: function(e) {
                                 console.log(e);

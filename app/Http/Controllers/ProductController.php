@@ -28,8 +28,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $color_json = Storage::disk('public')->get('json/color_name.json');
+        $size_json = Storage::disk('public')->get('json/product_size.json');
+        $colors = json_decode($color_json, true);
+        $sizes = json_decode($size_json, true);
         $categories = Catagory::where('visibility', '=', '1')->get();
-        return view('admin.product.create', compact('categories'));
+        return view('admin.product.create', compact('categories', 'colors', 'sizes'));
     }
 
     /**
@@ -43,8 +47,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $newProductId = Product::all()->count() + 1;
-        dd(Product::makeNewSlug(request('product_title')));
-
 
 
         // product images
@@ -53,13 +55,19 @@ class ProductController extends Controller
         if( file_exists( $fileUploadDir ) && is_dir( $fileUploadDir ) ) {
             $uploadedFile = array_values(array_diff(scandir($fileUploadDir), ['.', '..'])); 
         }
-        dd(request()->all());
+
+
+        dd(request()->all(), $uploadedFile);
     }
 
     public function addProductImages(Request $request) {
         $newProductId = Product::all()->count() + 1;
         $uploadedFile = $request->file('product_images');
-        $filename = time() . '-' .$uploadedFile->getClientOriginalName();
+        if($request->has('thumbnail')) {
+            $filename = request('thumbnail') . '-' . $newProductId . '.' .$uploadedFile->getClientOriginalExtension();
+        } else {
+            $filename = time() . '-' .$uploadedFile->getClientOriginalName();
+        }
         $fileUploadDir = 'product_images/product_'.$newProductId;
  
         Storage::disk('local')->putFileAs(
@@ -69,7 +77,7 @@ class ProductController extends Controller
         );
 
         $uploadedFile->move(public_path($fileUploadDir), $filename);
-        return response()->json(['filename'=> $filename, "new_product_id" => $newProductId]);
+        return response()->json(['filename'=> $filename, "new_product_id" => $newProductId, "req" => request('thumbnail')]);
     }
 
     public function deleteImage(Request $request) 

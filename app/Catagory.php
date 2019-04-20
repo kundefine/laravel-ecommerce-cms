@@ -12,4 +12,9 @@ class Catagory extends Model
     public function menu() {
         return $this->belongsTo('App\Menu');
     }
+
+
+    public function products() {
+        return $this->hasMany('App\Product', 'cat_id');
+    }
 }
