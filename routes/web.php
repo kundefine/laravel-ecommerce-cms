@@ -40,4 +40,6 @@ Route::get('/admin/product/create', 'ProductController@create');
 
 Route::post('/admin/product/store', 'ProductController@store');
 
+Route::post('/admin/product/add-product-images', 'ProductController@addProductImages');
+
 Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');

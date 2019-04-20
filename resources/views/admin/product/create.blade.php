@@ -94,13 +94,6 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label class="col-md-2 control-label">Product Slug</label>
-                                                            <div class="col-md-10">
-                                                                <input readonly id="product_slug" type="text" class="form-control" placeholder="Product slug" name="product_slug"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
                                                             <label class="col-md-2 control-label">Product price</label>
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" placeholder="Product Price" name="product_price"/>
@@ -294,6 +287,8 @@
                 var fileList = [];
                 var i = 0;
                 $("div#product_thumbnail").dropzone({ url: "/admin/product/else", });
+                
+                
                 $("div#product_images").dropzone({ 
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -309,7 +304,7 @@
                         });
                     },
                     paramName: "product_images",
-                    url: "/admin/product/store",
+                    url: "/admin/product/add-product-images",
                     acceptedFiles: ".jpeg,.jpg,.png,.gif",
                     addRemoveLinks: true,
                     timeout: 1000,

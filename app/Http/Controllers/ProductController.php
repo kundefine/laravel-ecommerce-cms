@@ -39,37 +39,53 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
 
     public function store(Request $request)
     {
-        
+        $newProductId = Product::all()->count() + 1;
+        dd(Product::makeNewSlug(request('product_title')));
+
+
+
+        // product images
+        $fileUploadDir = public_path('product_images/product_'.$newProductId . '/');
+        $uploadedFile = [];
+        if( file_exists( $fileUploadDir ) && is_dir( $fileUploadDir ) ) {
+            $uploadedFile = array_values(array_diff(scandir($fileUploadDir), ['.', '..'])); 
+        }
+        dd(request()->all());
+    }
+
+    public function addProductImages(Request $request) {
         $newProductId = Product::all()->count() + 1;
         $uploadedFile = $request->file('product_images');
-        $filename = uniqid().$uploadedFile->getClientOriginalName();
+        $filename = time() . '-' .$uploadedFile->getClientOriginalName();
+        $fileUploadDir = 'product_images/product_'.$newProductId;
  
         Storage::disk('local')->putFileAs(
-            'product_images/product_'.$newProductId,
+            $fileUploadDir,
             $uploadedFile,
             $filename
         );
+
+        $uploadedFile->move(public_path($fileUploadDir), $filename);
         return response()->json(['filename'=> $filename, "new_product_id" => $newProductId]);
     }
 
-    public function deleteImage(Request $request) {
+    public function deleteImage(Request $request) 
+    {
         $newProductId = Product::all()->count() + 1;
         $filename =  $request->get('filename');
+        $fileUploadDir = 'product_images/product_'.$newProductId;
         $p = 'product_images/product_'.$newProductId . '/'.$filename;
-        $path=storage_path().'/app/product_images/product_'.$newProductId . '/'.$filename;
         if (Storage::exists($p)) {
             $delete = Storage::delete($p);
+            $pelete = unlink(public_path($fileUploadDir . '/' . $filename) );
         } else {
             $delete = null;
         }
-        return response()->json(['success'=> $filename, "new_product_id" => $newProductId, 'path' => $path, 'delete' => $delete, $p]);
+        return response()->json(['success'=> $filename, "new_product_id" => $newProductId, 'path' => $p, 'delete' => $delete, 'pdelete' => $pelete]);
     }
-
-
 
 
     /**
