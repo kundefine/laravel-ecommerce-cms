@@ -82,28 +82,28 @@
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Title</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" placeholder="Product Title" name="product_title"/>
+                                                                <input type="text" class="form-control" value="{{ old('product_title') }}" placeholder="Product Title" name="product_title" required/>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Discription</label>
                                                             <div class="col-md-10">
-                                                                <textarea class="summernote" name="product_discription"></textarea>
+                                                                <textarea class="summernote" name="product_discription" novalidate>{{ old('product_discription') }}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product price</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" placeholder="Product Price" name="product_price"/>
+                                                                <input type="text" class="form-control" value="{{ old('product_price') }}" placeholder="Product Price" name="product_price" required/>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Discount</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" placeholder="Product Discount" name="product_discount"/>
+                                                                <input type="text" class="form-control" placeholder="%" value="0" name="product_discount" value="{{ old('product_discount') }}"/>
                                                             </div>
                                                         </div>
 
@@ -163,8 +163,8 @@
                                             <div class="panel-body"> 
                                                 <div class="row">
                                                     <div id="select_category" class="form-group dpn">
-                                                        <label class="col-md-2 control-label">Available Color</label>
-                                                        <div class="col-md-10">                                                                                
+                                                        <label class="col-md-4 control-label">Available Color</label>
+                                                        <div class="col-md-8">                                                                                
                                                             <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[color_name][]">
                                                             <option value="null" label="">Select One</option>
                                                             @foreach($colors as $color_name => $color_hex)
@@ -178,11 +178,11 @@
                                                     </div>
                                                 </div>                                
                                                    
-
+                                                <br>
                                                 <div class="row">
                                                     <div id="select_category" class="form-group dpn">
-                                                        <label class="col-md-2 control-label">Available Size</label>
-                                                        <div class="col-md-10">                                                                                
+                                                        <label class="col-md-4 control-label">Available Size</label>
+                                                        <div class="col-md-8">                                                                                
                                                             <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[size][]">
                                                             <option value="{{null}}" label="">Select One</option>
                                                             @foreach($sizes as $cloth => $size_cat)
@@ -348,12 +348,12 @@
 
         <script>
             
-            // product thumbnail
+            
             $(document).ready(function(){
                 Dropzone.autoDiscover = false;
                 var fileList = [];
                 var i = 0;
-
+                // product thumbnail upload
                 $("div#product_thumbnail").dropzone({ 
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

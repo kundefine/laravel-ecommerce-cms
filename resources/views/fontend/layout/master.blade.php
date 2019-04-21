@@ -32,10 +32,10 @@
 	<!--Start Home Area
 ===================================-->
     {{-- Home Content --}}
-	@include('fontend.inc.home-content')
+	@yield('content-section')
+	
     
-    {{-- photo galary --}}
-	@include('fontend.inc.photo-galary')
+    
 	<!--End Home Area
 ===================================-->
 
@@ -49,18 +49,18 @@
 
 	<!--First jQuery Js, then proper Js, then Bootstrap and others-->
 	<!--Modernizr-->
-	<script src="fontend/assets/js/modernizr-3.6.0.min.js"></script>
+	<script src={{asset("fontend/assets/js/modernizr-3.6.0.min.js")}}></script>
 	<!--jQuery Js-->
-	<script src="fontend/assets/js/jquery-3.3.1.min.js"></script>
+	<script src={{asset("fontend/assets/js/jquery-3.3.1.min.js")}}></script>
 	<!--Proper Js-->
-	<script src="fontend/assets/js/propper.js"></script>
+	<script src={{asset("fontend/assets/js/propper.js")}}></script>
 	<!--Bootstrap 4.1.3-->
-	<script src="fontend/assets/js/bootstrap.min.js"></script>
+	<script src={{asset("fontend/assets/js/bootstrap.min.js")}}></script>
 	<!--Uikit Js-->
-	<script src="fontend/assets/js/uikit.min.js"></script>
-	<script src="fontend/assets/js/uikit-icons.min.js"></script>
+	<script src={{asset("fontend/assets/js/uikit.min.js")}}></script>
+	<script src={{asset("fontend/assets/js/uikit-icons.min.js")}}></script>
 	<!--Custom Js-->
-	<script src="fontend/assets/js/custom.js"></script>
+	<script src={{asset("fontend/assets/js/custom.js")}}></script>
 </body>
 
 </html>

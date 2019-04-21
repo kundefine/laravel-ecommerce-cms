@@ -1624,3 +1624,19 @@ footer.footer-area .link-row-area.footer-bottom .social-icons a {
   margin: 10px 0;
 }
 /*# sourceMappingURL=main.css.map */
+
+
+.product-images img {
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(96, 125, 139, 0.7);
+  margin-right: 15px;
+  margin-bottom: 10px;
+  padding: 5px
+}
+
+.product-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

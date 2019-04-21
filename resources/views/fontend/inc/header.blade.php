@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="logo-area">
-							<a href="{{route('home')}}"><img src="fontend/assets/img/logo_1.png" alt="logo" class="logo"></a>
+							<a href="{{route('home')}}"><img src={{asset("fontend/assets/img/logo_1.png")}} alt="logo" class="logo"></a>
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -80,12 +80,12 @@
 																<div class="col-4 single-collum most-viewed-items">
 																	<h2>most viewed items</h2>
 																	<div class="single-viewed-items">
-																		<img src="fontend/assets/img/147476.jpg" alt="" class="img-fluid">
+																		<img src={{asset("fontend/assets/img/147476.jpg")}} alt="" class="img-fluid">
 																		<h3>keedo</h3>
 																		<p>Pretty Romper</p>
 																	</div>
 																	<div class="single-viewed-items">
-																		<img src="fontend/assets/img/147476.jpg" alt="" class="img-fluid">
+																		<img src={{asset("fontend/assets/img/147476.jpg")}} alt="" class="img-fluid">
 																		<h3>keedo</h3>
 																		<p>Pretty Romper</p>
 																	</div>

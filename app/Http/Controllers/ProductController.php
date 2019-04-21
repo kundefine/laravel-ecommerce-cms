@@ -48,6 +48,13 @@ class ProductController extends Controller
     {
         $newProductId = Product::all()->count() + 1;
 
+        $request->validate([
+            'product_title' => 'required|min:3',
+            'product_price' => 'required|numeric',
+            'product_discount' => 'numeric|min:0|max:100',
+        ]);
+
+        $product_slug = Product::makeNewSlug(request('product_title'));
 
         // product images
         $fileUploadDir = public_path('product_images/product_'.$newProductId . '/');
@@ -55,9 +62,47 @@ class ProductController extends Controller
         if( file_exists( $fileUploadDir ) && is_dir( $fileUploadDir ) ) {
             $uploadedFile = array_values(array_diff(scandir($fileUploadDir), ['.', '..'])); 
         }
+        $thumbnail = 'nothumbnail.jpg';
+        if(!empty($uploadedFile)) {
+            foreach($uploadedFile as $index => $upFile) {
+                if( strstr($upFile, 'thumbnail-' .  $newProductId) ) {
+                    $thumbnail = trim($upFile, "\"");
+                    unset($uploadedFile[$index]);
+                    array_values($uploadedFile);
+                    break;
+                }
+            }
+        } else {
+            $uploadedFile = null;
+        }
+
+        $discount_price = request('product_price');
+        if(!empty(request('product_discount'))) {
+            $discount_price = request('product_price') - ((request('product_price') * request('product_discount'))/ 100);
+        } else {
+            $discount_price = request('product_price') - ((request('product_price') * 0)/ 100);
+        }
+
+    
+
+        Product::create([
+            'id' => $newProductId,
+            'cat_id' => request('cat_id'),
+            'product_title' => request('product_title'),
+            'product_slug' => $product_slug,
+            'product_measurement_details' => json_encode( request('product_measurement') ),
+            'product_discription' => request('product_discription'),
+            'product_price' => request('product_price'),
+            'product_discount' => !empty(request('product_discount')) ? request('product_discount') : 0,
+            'product_price_after_discount' => $discount_price,
+            'product_thumbnail' => json_encode( $thumbnail ),
+            'product_images' => json_encode( $uploadedFile ),
+            'product_stock' => request('product_stock'),
+            'visibility' => request('visibility'),
+        ]);
 
 
-        dd(request()->all(), $uploadedFile);
+        return back()->with('success', 'Your product has been successfully added.');
     }
 
     public function addProductImages(Request $request) {

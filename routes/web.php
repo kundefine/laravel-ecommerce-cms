@@ -1,22 +1,32 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use App\Menu;
+use App\Product;
+use App\Catagory;
+
+
 
 Route::get('/', function () {
     $menus = Menu::where('visibility', '=', '1')->get();
     return view('fontend.index', compact('menus'));
 })->name('home');
+
+
+Route::get('/category/{id}', function ($id) {
+    $categoy_products = Catagory::find($id)->products()->get()->filter( function($singleProduct){ return $singleProduct->visibility == 1; } )->all();
+    $menus = Menu::where('visibility', '=', '1')->get();
+    return view('fontend.category.index', compact('menus','categoy_products'));
+});
+
+Route::get('/product/{id}', function ($id) {
+    $id = (int) $id;
+
+    $product = Product::find($id);
+    $menus = Menu::where('visibility', '=', '1')->get();
+    return view('fontend.product.index', compact('menus','product'));
+});
+
+
 
 
 Route::get('/admin', 'AdminController@index');
@@ -37,9 +47,6 @@ Route::delete('/admin/menu/{menu}/delete', 'MenuController@destroy');
 
 Route::get('/admin/product', 'ProductController@index');
 Route::get('/admin/product/create', 'ProductController@create');
-
 Route::post('/admin/product/store', 'ProductController@store');
-
 Route::post('/admin/product/add-product-images', 'ProductController@addProductImages');
-
 Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
