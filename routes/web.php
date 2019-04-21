@@ -13,9 +13,10 @@ Route::get('/', function () {
 
 
 Route::get('/category/{id}', function ($id) {
+    $current_cat = Catagory::find($id);
     $categoy_products = Catagory::find($id)->products()->get()->filter( function($singleProduct){ return $singleProduct->visibility == 1; } )->all();
     $menus = Menu::where('visibility', '=', '1')->get();
-    return view('fontend.category.index', compact('menus','categoy_products'));
+    return view('fontend.category.index', compact('menus','categoy_products', 'current_cat'));
 });
 
 Route::get('/product/{id}', function ($id) {
@@ -50,3 +51,6 @@ Route::get('/admin/product/create', 'ProductController@create');
 Route::post('/admin/product/store', 'ProductController@store');
 Route::post('/admin/product/add-product-images', 'ProductController@addProductImages');
 Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
+
+
+Route::post('/add_to_cart', 'AddToCartController@handelCartRequest');

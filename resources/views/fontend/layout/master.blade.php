@@ -8,13 +8,14 @@
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="assets/img/favicon.png">
+	<link rel="shortcut icon" href={{asset("assets/img/favicon.png")}}>
 	<!-- Author Meta -->
 	<meta name="author" content="rjshikto">
 	<!-- Meta Description -->
 	<meta name="description" content="">
 	<!-- Meta Keyword -->
 	<meta name="keywords" content="">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Site Title -->
 	<title>InboxKidz</title>
 	<!--Main Css 1.0-->
@@ -61,6 +62,39 @@
 	<script src={{asset("fontend/assets/js/uikit-icons.min.js")}}></script>
 	<!--Custom Js-->
 	<script src={{asset("fontend/assets/js/custom.js")}}></script>
+
+	<script>
+
+		
+		$(document).ready(function(){
+			var singleProduct = {!! json_encode( $product->getOriginal() ) !!};
+			
+
+
+        	console.log(singleProduct);
+
+			$('#add_to_cart-k').click(function(e){
+				e.preventDefault();
+				singleProduct.quantity = $('#product_q_plus').val();
+				$.ajax({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+					},
+					type: 'POST',
+					url: '{{ url("/add_to_cart") }}',
+					data: {productData: singleProduct},
+					success: function (data){
+						console.log(data);
+						
+					},
+					error: function(e) {
+						console.log("some error occur");
+					}
+				});
+			});
+		});
+        
+    </script>
 </body>
 
 </html>

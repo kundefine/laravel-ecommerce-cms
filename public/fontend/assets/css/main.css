@@ -1640,3 +1640,28 @@ footer.footer-area .link-row-area.footer-bottom .social-icons a {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+
+.relative {
+  position: relative !important;
+}
+
+.cart-total-item {
+  background: #545353;
+  border-radius: 50%;
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  font-size: 12px;
+  font-family: "Noto Sans", Helvetica_normal, Arial, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  transition: all 2s;
+}
+

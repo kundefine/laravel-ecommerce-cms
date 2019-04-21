@@ -1,8 +1,8 @@
 @extends('fontend.layout.master')
 
+{{ Cart::getContent() }}
 
 @section('content-section')
-
     <section class="product_order">
         <div class="listings-title">
             <div class="container">
@@ -69,13 +69,39 @@
                                 <p class="freeora1">Card/Cash on delivery</p>
                                 <p class="freeora1">bKash/Online payment</p>
                             </div>
+
                             <div class="col-md-6 payment-security-guarenteed">
                                 <h3 class="payment-security-guarenteed-heading"><span class="fas fa-lock"></span>
                                     payment-security-guarenteed-heading</h3>
                                 <img src={{asset("fontend/assets/img/payment-icon.jpg")}} class="payment-security-guarenteed-img">
                             </div>
                         </div>
-                        <div class="row justify-content-end">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mesurment-info">
+
+                            @if($product->product_measurement_details != 'null')
+									
+								@foreach (json_decode($product->product_measurement_details) as $ass => $arr )
+                                    <ul>Available {{str_replace("_", " ", $ass)}}</ul>
+                                    <div class="product-attr">
+                                        @foreach ( $arr as $val )
+                                        <button class="btn btn-sm btn-primary" style="background: {{$ass == "color_name" ? $val : ''}}">
+                                            {{$val}} <span class="badge badge-success"></span>
+                                        </button>
+                                        
+                                        @endforeach
+                                    </div>
+                                    <br>
+								@endforeach
+							@else
+
+							@endif
+
+                                    
+
+                                </div>
+                            </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="contact_for_order">
                                     <span class="fas fa-phone"></span>
@@ -87,14 +113,14 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 order-count">
-                                <button uk-icon="icon: minus"></button>
-                                <input type="text" class="product_count_amount" value="1">
-                                <button uk-icon="icon: plus"></button>
+                                <button uk-icon="icon: minus" onclick="subQuantity()"></button>
+                                <input id="product_q_plus" type="text" class="product_count_amount" value="1">
+                                <button uk-icon="icon: plus" onclick="addQuantity()"></button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 product_action">
-                                <a href="#" class="butn_action"><span class="fas fa-shopping-cart"></span> Add to
+                                <a href="#" id="add_to_cart-k" class="butn_action"><span class="fas fa-shopping-cart"></span> Add to
                                     cart</a>
                                 <a href="#" class="butn_action"><span class="fas fa-taka-sign"></span>Tk. buy now</a>
                                 <a href="#" class="butn_action"><span class="fas fa-random"></span> Add to whishlist</a>
@@ -327,4 +353,21 @@
             </div>
     </section>
 
+    <script>
+    function addQuantity() {
+			let x = document.getElementById('product_q_plus'); 
+			let y = parseInt(x.value) + 1;
+			x.value = y;
+		}
+
+		
+
+		function subQuantity() {
+			let x = document.getElementById('product_q_plus');
+			let intx = parseInt( x.value );
+			let y = intx <= 1 ?  x.value  : intx - 1;
+			x.value = y;
+		}
+    </script>
+    
 @endsection('content-section')

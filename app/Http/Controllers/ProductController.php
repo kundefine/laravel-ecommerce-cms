@@ -95,7 +95,7 @@ class ProductController extends Controller
             'product_price' => request('product_price'),
             'product_discount' => !empty(request('product_discount')) ? request('product_discount') : 0,
             'product_price_after_discount' => $discount_price,
-            'product_thumbnail' => json_encode( $thumbnail ),
+            'product_thumbnail' => $thumbnail,
             'product_images' => json_encode( $uploadedFile ),
             'product_stock' => request('product_stock'),
             'visibility' => request('visibility'),

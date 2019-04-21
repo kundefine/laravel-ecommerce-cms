@@ -24,8 +24,8 @@
 							<a href="" class="single-items">
 								<span class="fas fa-user"></span> Account
 							</a>
-							<a href="" class="single-items">
-								<span class="fas fa-shopping-cart"></span> cart
+							<a href="" class="single-items relative">
+								<span class="fas fa-shopping-cart"><div class="cart-total-item">{{Cart::all()->count()}}</div></span> cart
 							</a>
 						</div>
 					</div>
