@@ -17,8 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.product.index');
+        $all_products = Product::orderBy('created_at', 'desc')->get();
+        return view('admin.product.index', compact('all_products'));
+
     }
 
     /**
@@ -183,6 +184,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back()->with('success', 'Delete Successfull');
     }
 }

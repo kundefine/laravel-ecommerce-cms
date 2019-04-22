@@ -6,6 +6,7 @@
 
 @section('aditional-script')
     <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap-select.js")}}></script>
+    <script type="text/javascript" src={{asset("js/plugins/datatables/jquery.dataTables.min.js")}}></script>
 @endsection
 
 @section('right-section')
@@ -21,36 +22,64 @@
                 </ul>                                
             </div>
             <div class="panel-body">
-                {{-- @if(count($all_categories))
-                    @foreach($all_categories as $category)
-                        <div class="col-md-4">
-                            <div class="tasks" id="tasks_progreess">
-                                <div class="task-item task-primary">
-                                    <div class="task-text">{{$category->title}}</div>
-                                    <div class="task-footer">
-                                        <div class="pull-left">
-                                            <a href="/admin/category/{{$category->id}}/edit">
-                                                <span class="fa fa-edit"></span> Edit
-                                            </a>
-                                            
-                                        </div>
-                                        <div class="pull-right">
-                                            <form action="/admin/category/{{$category->id}}/delete" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger" type="submit" onclick="confirm('Are you sure??')">
-                                                    <span class="fa fa-trash-o"></span> Delete
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>                                    
-                                </div>  
-                            </div>
-                        </div>
-                    @endforeach
+                @if(count($all_products))
+                <?php $c = 0; ?>
+
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product Id</th>
+                            <th>Product Thumbnail</th>
+                            <th>Product Title</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($all_products as $product)
+                            
+                            <tr>
+                                <td>{{$c}}</td>
+                                <td>{{$product->id}}</td>
+
+                                <td>
+                                    @if(trim($product->product_thumbnail, "\"") === 'nothumbnail.jpg')
+                                        <img src="https://via.placeholder.com/50x50?text=No+Thumbnail" />
+                                    @else
+                                        <img style="width: 50px; height: 50px;" src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}" alt="">
+                                    @endif
+                                </td>
+
+                                <td>{{$product->product_title}}</td>
+                                
+                                
+                                
+                                <td>
+                                    <a href="/admin/product/{{$product->id}}/edit">
+                                        <span class="fa fa-edit"></span> Edit
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <form action="/admin/product/{{$product->id}}/delete" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure??')">
+                                            <span class="fa fa-trash-o"></span> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <?php $c++; ?>
+                        @endforeach
+                    </tbody>
+                </table>
+                    {{-- {{$all_products->links()}} --}}
                @else
-                    <p>No Catagories Found <a href="/admin/category/create">Create New Category</a></p>
-                @endif --}}
+                    <p>No Product Found <a href="/admin/product/create">Create New Product</a></p>
+                @endif
             </div>      
             <div class="panel-footer">                                
                 
@@ -59,13 +88,4 @@
         <!-- END PANEL WITH CONTROL CLASSES -->
     </div>
 </div>
-
-
-
-
 @endsection
-
-
-
-
-
