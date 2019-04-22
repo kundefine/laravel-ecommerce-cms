@@ -1,7 +1,5 @@
 @extends('fontend.layout.master')
 
-{{ Cart::getContent() }}
-
 @section('content-section')
     <section class="product_order">
         <div class="listings-title">
@@ -353,21 +351,68 @@
             </div>
     </section>
 
-    <script>
-    function addQuantity() {
-			let x = document.getElementById('product_q_plus'); 
-			let y = parseInt(x.value) + 1;
-			x.value = y;
-		}
 
-		
+    @section('push-script')
 
-		function subQuantity() {
-			let x = document.getElementById('product_q_plus');
-			let intx = parseInt( x.value );
-			let y = intx <= 1 ?  x.value  : intx - 1;
-			x.value = y;
-		}
-    </script>
+        <script>
+        function addQuantity() {
+                let x = document.getElementById('product_q_plus'); 
+                let y = parseInt(x.value) + 1;
+                x.value = y;
+            }
+
+            
+
+            function subQuantity() {
+                let x = document.getElementById('product_q_plus');
+                let intx = parseInt( x.value );
+                let y = intx <= 1 ?  x.value  : intx - 1;
+                x.value = y;
+            }
+        </script>
+
+
+        <script>
+            $(document).ready(function(){
+                var singleProduct = {!! json_encode( $product->getOriginal() ) !!};
+                $('#add_to_cart-k').click(function(e){
+                    e.preventDefault();
+                    singleProduct.quantity = $('#product_q_plus').val();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                        },
+                        type: 'POST',
+                        url: '{{ url("/add_to_cart") }}',
+                        data: {productData: singleProduct},
+                        success: function (data){
+                            
+                            if( data.cartItemExits === true ) {
+                                console.log('already added');
+                            } else {
+                                console.log(data.added_product);
+                                console.log("cart item added");
+                                $('#cart-total-item').html(data.totalCart);
+                                $('#add-cart-item').append(`<tr>
+                                    <td>baby-${data.added_product.id}</td>
+                                    <td>baby-${data.added_product.name}</td>
+                                    <td>${data.added_product.price}</td>
+                                    <td>1</td>
+                                    <td style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
+                                </tr>`);
+                            }
+                            
+                        },
+                        error: function(e) {
+                            console.log("some error occur");
+                        }
+                    });
+                });
+
+                
+            });
+        </script>
+
+    @endsection
     
 @endsection('content-section')

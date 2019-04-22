@@ -8,14 +8,59 @@ class AddToCartController extends Controller
 {
     public function handelCartRequest(Request $request) {
         $product_data = request('productData');
+        $res = [];
+        $cartItemExits = \Cart::get($product_data["id"]);
 
-        \Cart::add([
-            'id' => $product_data["id"],
-            'name' => $product_data["product_title"],
-            'price' => $product_data["product_price_after_discount"],
-            'quantity' => $product_data["quantity"]
-        ]);
+        if($cartItemExits !== null) {
+            $res["cartItemExits"] = true;
+            \Cart::update($product_data["id"], array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $product_data["quantity"]
+                ),
+              ));
 
-        return "added";
+        } else {
+            $res["cartItemExits"] = false;
+            \Cart::add([
+                'id' => $product_data["id"],
+                'name' => $product_data["product_title"],
+                'price' => $product_data["product_price_after_discount"],
+                'quantity' => $product_data["quantity"]
+            ]);
+
+            $res['added_product'] = array(
+                'id' => $product_data["id"],
+                'name' => $product_data["product_title"],
+                'price' => $product_data["product_price_after_discount"]
+            );
+
+        }
+
+        
+
+        $res["totalCart"] = \Cart::getContent()->count();
+
+        return response()->json($res);
     }
+
+    public function clearCart(Request $request) {
+        if(request('clearCart') === "clear the cart") {
+            $res["clear"] = \Cart::clear();
+
+            return response()->json($res);
+        }
+    }
+
+    public function removeCart(Request $request) {
+        $res["removed"] = \Cart::remove(request('id'));
+        $res["totalCart"] = \Cart::getContent()->count();
+            
+        return response()->json($res);
+        
+    }
+
+
+
+
 }

@@ -24,6 +24,13 @@
 </head>
 
 <body>
+
+	<!--Start Cart Item
+===================================-->
+	@include('fontend.inc.cart-item')
+	<!--End Cart Item
+===================================-->
+
 	<!--Start Header Area
 ===================================-->
 	@include('fontend.inc.header')
@@ -62,39 +69,79 @@
 	<script src={{asset("fontend/assets/js/uikit-icons.min.js")}}></script>
 	<!--Custom Js-->
 	<script src={{asset("fontend/assets/js/custom.js")}}></script>
-
 	<script>
 
-		
-		$(document).ready(function(){
-			var singleProduct = {!! json_encode( $product->getOriginal() ) !!};
-			
+	$(document).ready(function(){
 
 
-        	console.log(singleProduct);
 
-			$('#add_to_cart-k').click(function(e){
-				e.preventDefault();
-				singleProduct.quantity = $('#product_q_plus').val();
-				$.ajax({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
-					},
-					type: 'POST',
-					url: '{{ url("/add_to_cart") }}',
-					data: {productData: singleProduct},
-					success: function (data){
-						console.log(data);
-						
-					},
-					error: function(e) {
-						console.log("some error occur");
-					}
-				});
+		$('#full-cart-button').click(function(e){
+			e.preventDefault();
+			$('div#cart-item-list').addClass('cart-show');
+		});
+		$('#close-cart').click(function(e){
+			e.preventDefault();
+			$('div#cart-item-list').removeClass('cart-show');
+		});
+
+		$('#clear-cart').click(function(e){
+			e.stopPropagation();
+			$.ajax({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+				},
+				type: 'POST',
+				url: '{{ url("/clear_cart") }}',
+				data: {clearCart: "clear the cart"},
+				success: function (data){
+					console.log("cart has been clear");
+					console.log(data)
+					$('#cart-total-item').html(0);
+					$('#add-cart-item').html(``);
+					
+				},
+				error: function(e) {
+					console.log("some error occur");
+				}
 			});
 		});
-        
-    </script>
+
+
+		$('#checkout').click(function(e){
+			e.stopPropagation();
+		});
+
+		$(document).on("click", "i.remove-cart", function(e){
+			var removeCartElement = e.target.parentElement.parentElement;
+			var cartItem = document.getElementById('add-cart-item');
+			cartItem.removeChild(removeCartElement);
+			let id = this.id;
+			$.ajax({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+				},
+				type: 'POST',
+				url: '{{ url("/remove_cart_item") }}',
+				data: {id: id},
+				success: function (data){
+					console.log(data);
+					$('#cart-total-item').html(data.totalCart);
+				},
+				error: function(e) {
+					console.log("some error occur");
+				}
+			});
+		})
+		
+	});
+		
+	</script>
+
+	@yield('push-script')
+
+	
+
+
 </body>
 
 </html>

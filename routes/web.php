@@ -9,6 +9,8 @@ use App\Catagory;
 Route::get('/', function () {
     $menus = Menu::where('visibility', '=', '1')->get();
     return view('fontend.index', compact('menus'));
+
+    
 })->name('home');
 
 
@@ -54,3 +56,5 @@ Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
 
 
 Route::post('/add_to_cart', 'AddToCartController@handelCartRequest');
+Route::post('/clear_cart', 'AddToCartController@clearCart');
+Route::post('/remove_cart_item', 'AddToCartController@removeCart');
