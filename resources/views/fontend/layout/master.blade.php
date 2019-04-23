@@ -19,6 +19,7 @@
 	<!-- Site Title -->
 	<title>InboxKidz</title>
 	<!--Main Css 1.0-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.2/css/magnify.min.css" />
 	<link rel="stylesheet" type="text/css" href="{{asset('fontend/assets/css/main.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
@@ -72,7 +73,6 @@
 	<script>
 
 	$(document).ready(function(){
-
 
 
 		$('#full-cart-button').click(function(e){

@@ -1634,11 +1634,14 @@ footer.footer-area .link-row-area.footer-bottom .social-icons a {
   margin-bottom: 10px;
   padding: 5px
 }
-
+.product-images img.active {
+  border: 5px solid #eee;
+}
 .product-images {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 
@@ -1670,7 +1673,7 @@ div#cart-item-list {
   top: 0;
   right: -100%;
   height: 100%;
-  width: 500px;
+  width: 45%;
   z-index: 1000;
   background: #fff;
   box-shadow: -11px 5px 26px rgba(32, 35, 37, 0.38);
@@ -1695,4 +1698,44 @@ div#cart-item-list {
 
 div#cart-item-list.cart-show {
   right: 0;
+}
+
+.k-thumbnail {
+  width: 334px !important;
+  height: 250px !important;
+  min-width: 334px !important;
+  min-height: 250px !important;
+  max-width: 334px !important;
+  max-height: 250px !important;
+}
+
+div#cart-info {
+  position: fixed;
+  z-index: 9999999;
+  background: #fff;
+  max-height: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #060606;
+  font-size: 13px;
+  font-family: "Noto Sans", Helvetica_normal, Arial, sans-serif;
+  padding: 15px;
+  border-left: 3px solid coral;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  top: 50%;
+  transform: translate(-100%, -50%);
+  transition: all 1s;
+}
+
+td.cart-remove {
+  vertical-align: middle;
+  text-align: center;
+  padding: 0;
+}
+
+td.cart-remove i {
+  font-size: 16px;
+  color: red;
 }

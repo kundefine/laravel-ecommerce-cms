@@ -1,5 +1,3 @@
-
-
 <div id="cart-item-list" class="all-card-item-wraper">
     <div class="row cart-table-w">
         <div class="col-md-12">
@@ -10,20 +8,21 @@
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Price</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
                     <th scope="col">Remove</th>
                     </tr>
                 </thead>
                 <tbody id="add-cart-item">
                     @if(\Cart::getContent()->count())
                         @foreach (\Cart::getContent() as $singleCartItem )
-                            
-                        
-                        <tr class="single-cart-item">
+
+                        <tr id="single-cart-item-{{$singleCartItem->id}}" class="single-cart-item">
                             <th scope="row">baby-{{$singleCartItem->id}}</th>
                             <td>{{$singleCartItem->name}}</td>
                             <td>{{$singleCartItem->price}}</td>
-                            <td>1</td>
-                            <td style="cursor: pointer;"><i id="{{$singleCartItem->id}}" class="fas fa-trash remove-cart"></i></td>
+                            <td>{{$singleCartItem->quantity}}</td>
+                            <td>{{$singleCartItem->getPriceSum()}}</td>
+                            <td class="cart-remove" style="cursor: pointer;"><i id="{{$singleCartItem->id}}" class="fas fa-trash remove-cart"></i></td>
                         </tr>
                         @endforeach
                     @else
@@ -54,5 +53,7 @@
             </div>
         </div>
     </div>
-    
 </div>
+
+
+<div id="cart-info"></div>

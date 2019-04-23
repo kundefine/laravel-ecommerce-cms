@@ -7,9 +7,9 @@
                 <div class="row">
                     <div class="col-lg-9 wrap-title">
                         <ul class="title_breadcrumb">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="catagory-page.html" class="active">Boys</a></li>
-                            <li><a href="catagory-page.html" class="active">Critter Jersey</a></li>
+                        <?php $product_cat = $product->category()->get()->first(); ?>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/category/{{$product_cat->id}}" class="active">{{$product_cat->title}}</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 entry-title text-right">
@@ -27,9 +27,16 @@
                     <div class="col-lg-4">
                         <div class="order-image img-responsive">
 							@if(trim($product->product_thumbnail, "\"") === 'nothumbnail.jpg')
-								<img src="https://via.placeholder.com/468x480?text=No+Image+Found" />
+								<img class="zoom k-thumbnail"
+                                    src="https://via.placeholder.com/468x480?text=No+Image+Found"
+                                    data-magnify-src="https://via.placeholder.com/468x480?text=No+Image+Found"  
+                                />
 							@else
-								<img src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}" id="img_01" data-zoom-image="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}" />
+								<img 
+                                    class="zoom k-thumbnail"         
+                                    src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}"
+                                    data-magnify-src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}"
+                                />
 							@endif
                         </div>
 						<div class="product-images">
@@ -179,7 +186,7 @@
             </div>
 
 
-            <!--Product Description-->
+            <!--Product rating-->
             <div class="rating_review">
                 <h2>Ratings & Reviews</h2>
                 <div class="row">
@@ -374,6 +381,13 @@
 
         <script>
             $(document).ready(function(){
+                function cartInfo(message) {
+                    $('#cart-info').html(message);
+                    $('#cart-info').css('transform' , ' translate(0%, -50%)');
+                    setTimeout(function(){ $('#cart-info').css('transform' , ' translate(-100%, -50%)'); }, 2500);
+                }
+
+
                 var singleProduct = {!! json_encode( $product->getOriginal() ) !!};
                 $('#add_to_cart-k').click(function(e){
                     e.preventDefault();
@@ -389,17 +403,33 @@
                             
                             if( data.cartItemExits === true ) {
                                 console.log('already added');
+                                cartInfo("Already added to your cart");
+                                let currentCart = $(`tr#single-cart-item-${data.added_product.id}`);
+                                console.log(data.added_product);
+                                currentCart.html(
+                                    `
+                                        <td>baby-${data.added_product.id}</td>
+                                        <td>baby-${data.added_product.name}</td>
+                                        <td>${data.added_product.price}</td>
+                                        <td>${data.added_product.quantity}</td>
+                                        <td>${(data.added_product.total_price).toFixed(2)}</td>
+                                        <td class="cart-remove" style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
+                                    `
+                                )
                             } else {
                                 console.log(data.added_product);
                                 console.log("cart item added");
                                 $('#cart-total-item').html(data.totalCart);
-                                $('#add-cart-item').append(`<tr>
+                                $('#add-cart-item').append(`<tr id="single-cart-item-${data.added_product.id}">
                                     <td>baby-${data.added_product.id}</td>
                                     <td>baby-${data.added_product.name}</td>
                                     <td>${data.added_product.price}</td>
-                                    <td>1</td>
-                                    <td style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
+                                    <td>${data.added_product.quantity}</td>
+                                    <td>${(data.added_product.total_price).toFixed(2)}</td>
+                                    <td class="cart-remove" style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
                                 </tr>`);
+                                cartInfo("Your Item has been added successfully");
+                                
                             }
                             
                         },
@@ -412,6 +442,31 @@
                 
             });
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.2/js/jquery.magnify.min.js"></script>
+        <script>
+            var $zoom = null;
+            $(document).ready(function(){
+                $('.product-images img').click(function(e){
+                    $('.product-images img').removeClass('active');
+                    $(this).addClass('active');
+                    $('.k-thumbnail').attr('src', e.target.src);
+                    $('.k-thumbnail').attr('data-magnify-src', e.target.src);
+                    $('.magnify-lens').attr('style', 'background: url('+ e.target.src +') no-repeat');
+                    $zoom.destroy();
+                    $zoom = $('.zoom').magnify();
+                });
+
+                $zoom = $('.zoom').magnify();
+                $zoom.destroy();
+            });
+
+
+            $(document).ready(function() {
+               
+            });
+        </script>
+
+        
 
     @endsection
     
