@@ -70,6 +70,7 @@
 	<script src={{asset("fontend/assets/js/uikit-icons.min.js")}}></script>
 	<!--Custom Js-->
 	<script src={{asset("fontend/assets/js/custom.js")}}></script>
+	<script src={{asset("fontend/assets/js/k-cart.js")}}></script>
 	<script>
 
 	$(document).ready(function(){

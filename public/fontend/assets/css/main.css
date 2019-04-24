@@ -1698,6 +1698,12 @@ div#cart-item-list {
 
 div#cart-item-list.cart-show {
   right: 0;
+  left: 0;
+  height: 90%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 90%;
 }
 
 .k-thumbnail {
@@ -1738,4 +1744,15 @@ td.cart-remove {
 td.cart-remove i {
   font-size: 16px;
   color: red;
+}
+
+td.cart-thumbnail img {
+  width: 40px;
+  height: 40px;
+}
+
+.single-cart-item td, .single-cart-item th {
+  padding: 5px 8px;
+  vertical-align: middle;
+  text-align: center;
 }

@@ -47,7 +47,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $newProductId = Product::all()->count() + 1;
+        $newProductId = Product::all()->last()->id + 1;
 
         $request->validate([
             'product_title' => 'required|min:3',
@@ -107,7 +107,7 @@ class ProductController extends Controller
     }
 
     public function addProductImages(Request $request) {
-        $newProductId = Product::all()->count() + 1;
+        $newProductId = Product::all()->last()->id + 1;
         $uploadedFile = $request->file('product_images');
         if($request->has('thumbnail')) {
             $filename = request('thumbnail') . '-' . $newProductId . '.' .$uploadedFile->getClientOriginalExtension();
@@ -128,7 +128,7 @@ class ProductController extends Controller
 
     public function deleteImage(Request $request) 
     {
-        $newProductId = Product::all()->count() + 1;
+        $newProductId = Product::all()->last()->id + 1;
         $filename =  $request->get('filename');
         $fileUploadDir = 'product_images/product_'.$newProductId;
         $p = 'product_images/product_'.$newProductId . '/'.$filename;

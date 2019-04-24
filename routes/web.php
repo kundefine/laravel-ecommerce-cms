@@ -56,6 +56,10 @@ Route::delete('/admin/product/{product}/delete', 'ProductController@destroy');
 Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
 
 
+
+
 Route::post('/add_to_cart', 'AddToCartController@handelCartRequest');
 Route::post('/clear_cart', 'AddToCartController@clearCart');
 Route::post('/remove_cart_item', 'AddToCartController@removeCart');
+Route::post('/update_cart', 'AddToCartController@updateQuantity');
+Route::post('/update_attributes', 'AddToCartController@updateAttributes');

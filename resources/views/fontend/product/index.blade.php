@@ -376,11 +376,33 @@
                 let y = intx <= 1 ?  x.value  : intx - 1;
                 x.value = y;
             }
+
+
+String.prototype.trimLeft = function(charlist) {
+    if (charlist === undefined)
+      charlist = "\s";
+  
+    return this.replace(new RegExp("^[" + charlist + "]+"), "");
+  };
+
+  String.prototype.trimRight = function(charlist) {
+    if (charlist === undefined)
+      charlist = "\s";
+  
+    return this.replace(new RegExp("[" + charlist + "]+$"), "");
+  };
+
+
+  String.prototype.trim = function(charlist) {
+    return this.trimLeft(charlist).trimRight(charlist);
+  };
+
         </script>
 
 
         <script>
             $(document).ready(function(){
+                // give cart info feedback
                 function cartInfo(message) {
                     $('#cart-info').html(message);
                     $('#cart-info').css('transform' , ' translate(0%, -50%)');
@@ -389,6 +411,11 @@
 
 
                 var singleProduct = {!! json_encode( $product->getOriginal() ) !!};
+                console.log("myProduct", singleProduct);
+                console.log("myProduct", JSON.parse(singleProduct.product_measurement_details).size);
+                let color_name = JSON.parse(singleProduct.product_measurement_details).color_name;
+                let size = JSON.parse(singleProduct.product_measurement_details).size;
+
                 $('#add_to_cart-k').click(function(e){
                     e.preventDefault();
                     singleProduct.quantity = $('#product_q_plus').val();
@@ -405,31 +432,100 @@
                                 console.log('already added');
                                 cartInfo("Already added to your cart");
                                 let currentCart = $(`tr#single-cart-item-${data.added_product.id}`);
-                                console.log(data.added_product);
+                                let product_thumbanil = `<img src="https://via.placeholder.com/468x480?text=No+Image+Found">`;
+                                console.log("update cart response", data.added_product);
+                                let color_data = `<option value=${null}>Select One</option>`;
+                                let size_data = `<option value=${null}>Select One</option>`;
+                                if( ( (data.added_product.thumbnail).trim("\"") ) != 'nothumbnail.jpg' ) {
+                                    product_thumbanil = `<img src="/product_images/product_${data.added_product.id}/${(data.added_product.thumbnail).trim("\"")}">`;
+                                }
+
+                                if(color_name) {
+                                    color_name.map(function(color){
+                                        color_data += `<option value="${color}">${color}</option>`
+                                    });
+                                }
+
+                                if(size) {
+                                    size.map(function(size){
+                                        size_data += `<option value="${size}">${size}</option>`
+                                    });
+                                }
+
+
                                 currentCart.html(
                                     `
                                         <td>baby-${data.added_product.id}</td>
-                                        <td>baby-${data.added_product.name}</td>
+                                        <td class="cart-thumbnail">${product_thumbanil}</td>
+                                        <td>${data.added_product.name}</td>
                                         <td>${data.added_product.price}</td>
-                                        <td>${data.added_product.quantity}</td>
-                                        <td>${(data.added_product.total_price).toFixed(2)}</td>
+                                        <td>
+                                            <input min="1" class="quantityChange" type="number" name="quantity" quantitychange="${data.added_product.id}" value="${data.added_product.quantity}">
+                                        </td>
+
+
+                                        <td>
+                                            <select class="colorChange" name="" colorchange="${data.added_product.id}"> 
+                                                ${color_data}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="sizeChange" name="" sizechange="${data.added_product.id}"> 
+                                                ${size_data}
+                                            </select>
+                                        </td>
+
+
+                                        <td class="totalPrice">${(data.added_product.total_price).toFixed(2)}</td>
                                         <td class="cart-remove" style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
                                     `
                                 )
                             } else {
-                                console.log(data.added_product);
                                 console.log("cart item added");
+                                console.log("newly added cart response", data.added_product);
+                                let product_thumbanil = `<img src="https://via.placeholder.com/468x480?text=No+Image+Found">`;
+                                if( ( (data.added_product.thumbnail).trim("\"") ) != 'nothumbnail.jpg' ) {
+                                    product_thumbanil = `<img src="/product_images/product_${data.added_product.id}/${(data.added_product.thumbnail).trim("\"")}">`;
+                                }
+                                let color_data = `<option value=${null}>Select One</option>`;
+                                let size_data = `<option value=${null}>Select One</option>`;
+                                if(color_name) {
+                                    color_name.map(function(color){
+                                        color_data += `<option value="${color}">${color}</option>`
+                                        console.log('working');
+                                    });
+                                }
+
+                                if(size) {
+                                    size.map(function(size){
+                                        size_data += `<option value="${size}">${size}</option>`
+                                    });
+                                }
+
                                 $('#cart-total-item').html(data.totalCart);
-                                $('#add-cart-item').append(`<tr id="single-cart-item-${data.added_product.id}">
+                                $('#add-cart-item').append(`<tr class="single-cart-item" id="single-cart-item-${data.added_product.id}">
                                     <td>baby-${data.added_product.id}</td>
-                                    <td>baby-${data.added_product.name}</td>
+                                    <td class="cart-thumbnail">${product_thumbanil}</td>
+                                    <td>${data.added_product.name}</td>
                                     <td>${data.added_product.price}</td>
-                                    <td>${data.added_product.quantity}</td>
-                                    <td>${(data.added_product.total_price).toFixed(2)}</td>
+                                    <td class="cart_quantity">
+                                        <input min="1" class="quantityChange" type="number" name="quantity" quantitychange="${data.added_product.id}" value="${data.added_product.quantity}">
+                                    </td>
+                                    <td>
+                                        <select class="colorChange" name="" colorchange="${data.added_product.id}"> 
+                                            ${color_data}
+                                        </select>
+                                    </td>
+                                   <td>
+                                        <select class="sizeChange" name="" sizechange="${data.added_product.id}"> 
+                                            ${size_data}
+                                        </select>
+                                    </td>
+
+                                    <td class="totalPrice">${(data.added_product.total_price).toFixed(2)}</td>
                                     <td class="cart-remove" style="cursor: pointer;"><i id="${data.added_product.id}" class="fas fa-trash remove-cart"></i></td>
                                 </tr>`);
                                 cartInfo("Your Item has been added successfully");
-                                
                             }
                             
                         },
@@ -442,6 +538,11 @@
                 
             });
         </script>
+
+
+
+
+        {{-- Product Zooming functionality --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.2/js/jquery.magnify.min.js"></script>
         <script>
             var $zoom = null;
@@ -455,14 +556,8 @@
                     $zoom.destroy();
                     $zoom = $('.zoom').magnify();
                 });
-
                 $zoom = $('.zoom').magnify();
                 $zoom.destroy();
-            });
-
-
-            $(document).ready(function() {
-               
             });
         </script>
 
