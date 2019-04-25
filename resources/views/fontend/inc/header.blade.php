@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="logo-area">
-							<a href="{{route('home')}}"><img src={{asset("fontend/assets/img/logo_1.png")}} alt="logo" class="logo"></a>
+							<a href="/"><img src={{asset("fontend/assets/img/logo_1.png")}} alt="logo" class="logo"></a>
 						</div>
 					</div>
 					<div class="col-lg-4">

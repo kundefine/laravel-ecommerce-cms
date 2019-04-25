@@ -53,6 +53,8 @@ class ProductController extends Controller
             'product_title' => 'required|min:3',
             'product_price' => 'required|numeric',
             'product_discount' => 'numeric|min:0|max:100',
+            'product_measurement.color_name' => 'required',
+            'product_measurement.size' => 'required',
         ]);
 
         $product_slug = Product::makeNewSlug(request('product_title'));

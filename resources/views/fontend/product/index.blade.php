@@ -1,6 +1,11 @@
 @extends('fontend.layout.master')
 
+
+
+
 @section('content-section')
+    
+
     <section class="product_order">
         <div class="listings-title">
             <div class="container">
@@ -13,8 +18,8 @@
                         </ul>
                     </div>
                     <div class="col-lg-3 entry-title text-right">
-                        <a href="index.html">
-                            <h1>New In</h1>
+                        <a href="/category/{{$product_cat->id}}">
+                            <h1>{{$product_cat->title}}</h1>
                         </a>
                     </div>
                 </div>
@@ -465,12 +470,12 @@ String.prototype.trimLeft = function(charlist) {
 
 
                                         <td>
-                                            <select class="colorChange" name="" colorchange="${data.added_product.id}"> 
+                                            <select class="colorChange" name="" required form="quick-buy-form" colorchange="${data.added_product.id}"> 
                                                 ${color_data}
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="sizeChange" name="" sizechange="${data.added_product.id}"> 
+                                            <select class="sizeChange" name="" required form="quick-buy-form" sizechange="${data.added_product.id}"> 
                                                 ${size_data}
                                             </select>
                                         </td>
@@ -512,12 +517,12 @@ String.prototype.trimLeft = function(charlist) {
                                         <input min="1" class="quantityChange" type="number" name="quantity" quantitychange="${data.added_product.id}" value="${data.added_product.quantity}">
                                     </td>
                                     <td>
-                                        <select class="colorChange" name="" colorchange="${data.added_product.id}"> 
+                                        <select class="colorChange" name="" required form="quick-buy-form" colorchange="${data.added_product.id}"> 
                                             ${color_data}
                                         </select>
                                     </td>
                                    <td>
-                                        <select class="sizeChange" name="" sizechange="${data.added_product.id}"> 
+                                        <select class="sizeChange" name="" required form="quick-buy-form" sizechange="${data.added_product.id}"> 
                                             ${size_data}
                                         </select>
                                     </td>

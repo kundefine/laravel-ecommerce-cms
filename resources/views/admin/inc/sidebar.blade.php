@@ -66,7 +66,31 @@
                             <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/product/create"><span class="fa fa-image"></span>Add Product</a></li>                        
                         </ul>
                     </li>
-                    <li class="xn-title">Components</li>
+
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Orders</span></a>
+                        <ul>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/order";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/order"><span class="fa fa-user"></span>All Order</a></li>                     
+                        </ul>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- <li class="xn-title">Components</li>
                     <li>
                         <a href="maps.html"><span class="fa fa-map-marker"></span> <span class="xn-text">Maps</span></a>
                     </li>
@@ -90,7 +114,7 @@
                                 </ul>
                             </li>                            
                         </ul>
-                    </li>
+                    </li> --}}
                     
                 </ul>
                 <!-- END X-NAVIGATION -->

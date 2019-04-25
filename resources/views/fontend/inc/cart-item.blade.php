@@ -45,7 +45,7 @@
                             ?>
                             @if(is_array($product_measurement_details["color_name"]))
                                 <td>
-                                    <select class="colorChange" name="" colorchange="{{$singleCartItem->id}}">
+                                    <select class="colorChange" name="" required form="quick-buy-form" colorchange="{{$singleCartItem->id}}">
                                         <option value={{null}}>Select One</option>
                                         @foreach ( $product_measurement_details["color_name"] as $color )
                                             <option value="{{$color}}">{{$color}}</option>
@@ -56,7 +56,7 @@
                             
                             @if(is_array($product_measurement_details["size"]))
                                 <td>
-                                    <select class="sizeChange" name="" sizechange="{{$singleCartItem->id}}">
+                                    <select class="sizeChange" name="" required form="quick-buy-form" sizechange="{{$singleCartItem->id}}">
                                         <option value={{null}}>Select One</option>
                                         @foreach ($product_measurement_details["size"] as $size )
                                         <option value="{{$size}}">{{$size}}</option>
@@ -91,9 +91,21 @@
                         <button class="btn btn-success btn-block">close</button>
                     </div>
 
-                    <div id="checkout" class="col-md-4">
+                    {{-- <div id="checkout" class="col-md-4">
                         <a href="/checkout" class="btn btn-warning btn-block">Checkout</a>
+                    </div> --}}
+
+                    <div id="checkout" class="col-md-4">
+                        <a href="#" id="quick-buy" class="btn btn-warning btn-block">Quick Buy</a>
                     </div>
+
+
+                   
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -102,3 +114,29 @@
 
 
 <div id="cart-info"></div>
+
+{{-- quick buy form --}}
+<form action="/guest/order" id="quick-buy-form" method="post">
+    @csrf
+
+    <div class="form-group">
+        <label for="name">Your Name</label> <label for="" id="close-quick-buy-form" style="float: right">close</label>
+        <input type="text" class="form-control" name="name" required placeholder="Enter Your Name">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Your email</label>
+        <input type="email" class="form-control" name="email" required placeholder="Enter Your Email">
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Your Phone</label>
+        <input type="text" class="form-control" name="phone" required placeholder="Enter Your Phone">
+    </div>
+
+    <div class="form-group">
+        <label for="address">Your Address</label>
+        <textarea type="text" class="form-control" name="address" required placeholder="Enter address here"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+</form>

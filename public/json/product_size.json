@@ -1,7 +1,7 @@
 {
 	"clothes" : {
 		"standard" : ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL"],
-		"babies" : ["Just Born", "3 month", "6 month", "8 month", "1 year", "2 year", "3 year", "4 year", "5 years"]
+		"babies" : ["Just Born", "3 month", "6 month", "8 month", "1 year", "2 year", "3 year", "4 year", "5 years", "6 years", "7 Years"]
 	}
 	
 }

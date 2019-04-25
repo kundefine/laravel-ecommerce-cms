@@ -41,7 +41,16 @@
 	<!--Start Home Area
 ===================================-->
     {{-- Home Content --}}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				@include('admin.inc.alert-message')
+			</div>	
+		</div>
+	</div>
+
 	@yield('content-section')
+
 	
     
     
@@ -144,5 +153,7 @@
 
 
 </body>
+
+	
 
 </html>

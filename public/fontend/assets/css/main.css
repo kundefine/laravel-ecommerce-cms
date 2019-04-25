@@ -1756,3 +1756,32 @@ td.cart-thumbnail img {
   vertical-align: middle;
   text-align: center;
 }
+
+#quick-buy-form {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  right: 0;
+  background: cornsilk;
+  width: 50%;
+  margin: auto;
+  height: auto;
+  padding: 20px;
+  transform: translateY(-100%);
+  z-index: 9999;
+  transition: all 0.8s;
+}
+
+#quick-buy-form.show {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+label#close-quick-buy-form {
+  background: darkgray;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+}

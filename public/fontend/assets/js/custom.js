@@ -113,3 +113,14 @@
 
 
 
+
+
+$('label#close-quick-buy-form').click(function(){
+    $('#quick-buy-form').removeClass('show');
+});
+
+$('#quick-buy').click(function(e){
+    e.preventDefault();
+
+    $('#quick-buy-form').addClass('show');
+});
