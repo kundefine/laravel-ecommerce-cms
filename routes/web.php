@@ -52,8 +52,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/product/{product}/delete', 'ProductController@destroy');
     Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
     Route::get('/admin/order', 'OrderController@index');
-});
 
+    Route::get('/admin/page', 'PageController@index');
+    Route::get('/admin/page/create', 'PageController@create');
+    Route::get('/admin/page/{page}/edit', 'PageController@edit');
+    Route::patch('/admin/page/{page}/update', 'PageController@update');
+    Route::post('/admin/page/store', 'PageController@store');
+
+});
 
 
 

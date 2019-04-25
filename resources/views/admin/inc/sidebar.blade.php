@@ -75,6 +75,16 @@
                         </ul>
                     </li>
 
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Pages</span></a>
+                        <ul>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/page";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/page"><span class="fa fa-user"></span>All page</a></li>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/page/create";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/page/create"><span class="fa fa-image"></span>Add page</a></li>                        
+                        </ul>
+                    </li>
+
 
 
 

@@ -14,7 +14,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $all_pages = Page::orderBy('created_at', 'desc')->get();
+        return view('admin.page.index', compact('all_pages'));
     }
 
     /**
@@ -24,7 +25,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.page.create');
     }
 
     /**
@@ -35,7 +37,16 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'discription' => 'required',
+        ]);
+
+        $page_data = request()->all();
+        $page_data['slug'] = Page::makeNewSlug(request('title')); 
+
+        Page::create($page_data);
+        return back()->with('success', 'Your Page has been successfully added.');
     }
 
     /**
@@ -57,7 +68,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        return view('admin.page.edit', compact('page'));
     }
 
     /**
@@ -69,7 +80,15 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'discription' => 'required',
+        ]);
+
+        $page->title = request('title');
+        $page->discription = request('discription');
+        $page->save();
+        return back()->with('success', 'Page has been Updated successfully.');
     }
 
     /**
