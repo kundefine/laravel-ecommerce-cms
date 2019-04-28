@@ -124,3 +124,36 @@ $('#quick-buy').click(function(e){
 
     $('#quick-buy-form').addClass('show');
 });
+
+
+
+
+// payment method option
+
+$(`#payment_method`).change(function(){
+
+    if( $(this).val() === "bkash") {
+        // show Bkash
+        showOnlyBkash();
+    } else if($(this).val() === "rocket") {
+        // show Rocket
+        showOnlyRocket()
+    } else {
+        // hide all payment option
+        hideAllPaymentOption();
+    }
+
+    function showOnlyBkash() {
+        $('.payment_option').hide();
+        $('#bkash').show();
+    }
+    function showOnlyRocket() {
+        $('.payment_option').hide();
+        $('#rocket').show();
+    }
+
+    function hideAllPaymentOption() {
+        $('.payment_option').hide();
+    }
+    
+})

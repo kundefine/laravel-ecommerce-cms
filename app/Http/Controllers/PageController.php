@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\Menu;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -99,6 +100,22 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        if($page->delete())
+            return back()->with('success', 'Delete Successfull');
+    }
+
+
+
+    public function home() {
+        $menus = Menu::where('visibility', '=', '1')->get();
+        $home = Page::where('slug', '=', 'home')->first()->getAttributes();
+
+        return view('fontend.index', compact('menus', 'home'));
+    }
+
+    public function page($slug) {
+        $menus = Menu::where('visibility', '=', '1')->get();
+        $page = Page::where('slug', '=', $slug)->firstOrFail();
+        return view('fontend.page', compact('menus', 'page'));
     }
 }

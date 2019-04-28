@@ -49,7 +49,7 @@
                                     @if($page->slug === "home")
                                         <a href="/" target="blank"><?php echo url("/"); ?></a>
                                     @else
-                                        <a target="blank" href="/page/{{$page->id}}/"><?php echo url("/page/{$page->slug}"); ?></a>
+                                        <a target="blank" href="/page/{{$page->slug}}/"><?php echo url("/page/{$page->slug}"); ?></a>
                                     @endif
                                 </td>
                                 <td>

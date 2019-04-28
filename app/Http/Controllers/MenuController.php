@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Menu;
+use App\page;
 use App\Catagory;
 
 class MenuController extends Controller
@@ -29,7 +30,8 @@ class MenuController extends Controller
     public function create()
     {
         $categories = Catagory::where('visibility', '=', '1')->get();
-        return view('admin.menu.create', compact('categories'));
+        $pages = Page::where('visibility', '=', '1')->get();
+        return view('admin.menu.create', compact('categories','pages'));
 
     }
 

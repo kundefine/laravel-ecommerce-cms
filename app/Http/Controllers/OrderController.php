@@ -48,7 +48,15 @@ class OrderController extends Controller
 
         $cart_items_collection = \Cart::getContent();
         $cart_items = \Cart::getContent()->toArray();
+
         $in_voice_id = uniqid();
+
+        // $in_voice_found = Order::where('invoice_id','=', "5cc171sdf0796c6b")->first();
+  
+        while(Order::where('invoice_id','=', $in_voice_id)->first()) {
+            $in_voice_id = uniqid();
+        }
+
         $guest_id = hexdec($in_voice_id);
         $cart = [];
         foreach($cart_items_collection as $singleCartItem) {
@@ -57,6 +65,10 @@ class OrderController extends Controller
         $cart['item_info'] = $cart_items;
         $cart['subtotal'] = \Cart::getSubTotal();
         
+        $payment_info = array_filter(request('payment_info'), function($item){
+            return ($item !== null);
+        });
+        $payment_info = json_encode($payment_info);
         
         Order::create([
             'invoice_id' => $in_voice_id,
@@ -65,6 +77,9 @@ class OrderController extends Controller
             'guest_name' => request('name'),
             'guest_email' => request('email'),
             'guest_phone' => request('phone'),
+            'location' => request('location'),
+            'payment_method' => request('payment_method'),
+            'payment_info' => $payment_info,
             'guest_shiping_addr' => request('address'),
             'order_item' => json_encode($cart)
         ]);
@@ -72,7 +87,7 @@ class OrderController extends Controller
         \Cart::clear();
 
 
-        return redirect('/order_added')->with('success', 'Your Order has been added successfully soon our agent will contact with you');
+        return redirect('/order_added?invoice_id=' . $in_voice_id)->with('success', 'Your Order has been added successfully soon our agent will contact with you');
 
     }
 

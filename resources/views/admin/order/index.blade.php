@@ -34,7 +34,8 @@
                             <th>Order Id</th>
                             <th>Invoice Id</th>
                             <th>User Information</th>
-                            <th>order_item</th>
+                            <th>Order Item</th>
+                            <th>Payment Information</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,17 +87,41 @@
                                                 <tr>
                                                     <td>{{ $item["id"] }}</td>
                                                     <td>{{ $item["name"] }}</td>
-                                                    <td>{{ $item["attributes"]["color"] }}</td>
-                                                    <td>{{ $item["attributes"]["size"] }}</td>
+                                                    <td>@if( isset($item["attributes"]["color"]) ) {{ $item["attributes"]["color"] }} @endif </td>
+                                                    <td>@if( isset($item["attributes"]["size"]) ) {{ $item["attributes"]["size"] }} @endif </td>
                                                     <td>{{ $item["price"] }}</td>
                                                     <td>{{ $item["quantity"] }}</td>
                                                     <td>{{ $item["total_price"] }}</td>
                                                 </tr>
                                                 
-                                            @endforeach 
+                                            @endforeach
+                                                <tr>
+                                                    <th colspan="6" style="text-align: right">SubTotal</th>
+                                                    <td>{{ $orderItems['subtotal'] }}</td>
+                                                </tr>
                                         </tbody>
                                         
                                     </table>
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <div>
+                                            <strong>Payment Method</strong> - <span>{{$order->payment_method}}</span>
+                                        </div>
+                                        <?php 
+                                            $payment_info = json_decode($order->payment_info, true);
+                                            
+                                        ?>
+                                        @if(!empty($payment_info))
+                                            <div>
+                                                <strong>Account Number</strong> - <span>{{ $payment_info[$order->payment_method . '_acc_num'] }}</span>
+                                            </div>
+                                            <div>
+                                                <strong>Transection Id</strong> - <span>{{ $payment_info[$order->payment_method . '_acc_tran_id'] }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    
                                 </td>
 
 

@@ -1765,11 +1765,12 @@ td.cart-thumbnail img {
   background: cornsilk;
   width: 50%;
   margin: auto;
-  height: auto;
+  max-height: 100%;
   padding: 20px;
   transform: translateY(-100%);
   z-index: 9999;
   transition: all 0.8s;
+  overflow-y: scroll;
 }
 
 #quick-buy-form.show {
@@ -1784,4 +1785,8 @@ label#close-quick-buy-form {
   border-radius: 3px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.payment_option {
+  display: none;
 }

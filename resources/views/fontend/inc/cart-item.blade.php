@@ -98,14 +98,6 @@
                     <div id="checkout" class="col-md-4">
                         <a href="#" id="quick-buy" class="btn btn-warning btn-block">Quick Buy</a>
                     </div>
-
-
-                   
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -135,8 +127,62 @@
     </div>
 
     <div class="form-group">
-        <label for="address">Your Address</label>
+        <label for="address">Delivery Location</label>
+        <select class="form-control" name="location" id="" required>
+            <option value="">None</option>
+            <option value="inside_dhaka">Inside Dhaka City</option>
+            <option value="outside_dhaka">Outside Dhaka City</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="address">Your Shiping Address</label>
         <textarea type="text" class="form-control" name="address" required placeholder="Enter address here"></textarea>
     </div>
+
+    <div class="form-group">
+        <label for="address">Select Your Payment Option</label>
+        <select class="form-control" name="payment_method" id="payment_method" required>
+            <option value="">None</option>
+            <option value="cash_on_delivery">Cash On Delivery</option>
+            <option value="bkash">Bkash</option>
+            <option value="rocket">Rocket</option>
+        </select>
+    </div>
+
+    {{-- Bkash --}}
+    <div class="form-group payment_option" id="bkash">
+        <h6 for="address">Bkash Payment</h6>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="address">Your bkash Account Number</label>
+                <input type="text" class="form-control" name="payment_info[bkash_acc_num]" placeholder="Your bkash Account Number"> 
+            </div>
+
+            <div class="col-md-6">
+                <label for="address">bkash Transaction Id</label>
+                <input type="text" class="form-control" name="payment_info[bkash_acc_tran_id]" placeholder="bkash Transaction Id"> 
+            </div>
+        </div>
+    </div>
+
+    {{-- Rocket Payment --}}
+    <div class="form-group payment_option" id="rocket">
+        <h6 for="address">Rocket Payment</h6>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="address">Your Rocket Account Number</label>
+                <input type="text" class="form-control" name="payment_info[rocket_acc_num]" placeholder="Your rocket Account Number"> 
+            </div>
+
+            <div class="col-md-6">
+                <label for="address">Rocket Transaction Id</label>
+                <input type="text" class="form-control" name="payment_info[rocket_acc_tran_id]" placeholder="rocket Transaction Id"> 
+            </div>
+        </div>
+    </div>
+
+
     <button type="submit" class="btn btn-primary btn-block">Submit</button>
 </form>

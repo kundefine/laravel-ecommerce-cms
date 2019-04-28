@@ -102,18 +102,21 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12">
+                                @if(count($pages))
                                     <div id="select_page" class="form-group dpn">
                                         <label class="col-md-2 control-label">Select Page</label>
                                         <div class="col-md-10">                                                                                
                                             <select class="form-control select" data-live-search="true" name="page_id">
                                                 <option value="null">Select One</option>
-                                                <option value="1">Page One</option>
-                                                <option value="2">Page Two</option>
-                                                <option value="3">Page Three</option>
-                                                <option value="4">Page Four</option>
+                                                @foreach($pages as $page)
+                                                    <option value="{{$page->slug}}">{{$page->title}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
+                                @else
+                                    <p>Please add some Pages</p>
+                                @endif
                                 @if(count( $categories ))
                                     <div id="select_category" class="form-group dpn">
                                         <label class="col-md-2 control-label">Select Category</label>

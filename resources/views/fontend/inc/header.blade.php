@@ -99,7 +99,9 @@
 													@endif
 												</li>
 											@elseif($menu->menu_type === "page_link")
-
+												<li class="nav-item">
+													<a class="nav-link" href="{{$menu->link}}">{{$menu->title}}</a>
+												</li>
 											@endif
 										
 										@endforeach

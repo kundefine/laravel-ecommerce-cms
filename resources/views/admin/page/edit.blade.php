@@ -9,14 +9,7 @@
     <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap-select.js")}}></script>
     <script type="text/javascript" src={{asset("js/plugins/summernote/summernote.js")}}></script>
     <script>
-        $('#myEditor').summernote({
-            height: 500,
-            disableResizeEditor: true,
-            minHeight: 500,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
         
-    
-        });
     </script>
     
 @endsection
