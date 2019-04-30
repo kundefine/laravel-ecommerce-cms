@@ -6,10 +6,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
-						<div class="search-box">
-							<input type="text" class="search-input" placeholder="Search">
-							<button type="submit"><span class="fas fa-search"></span></button>
-						</div>
+						<form action="/search" method="get">
+							@csrf
+							<div class="search-box">
+								<input type="text" class="search-input" placeholder="Search" name="q">
+								<button type="submit"><span class="fas fa-search"></span></button>
+							</div>
+						</form>
+						
 					</div>
 					<div class="col-lg-4">
 						<div class="logo-area">

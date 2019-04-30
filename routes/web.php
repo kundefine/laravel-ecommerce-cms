@@ -78,8 +78,6 @@ Route::post('/guest/order', 'OrderController@storeAsGuest');
 Route::get('/order_added', function(){
     $in_voice_id = $_GET['invoice_id'] ?? null;
     $order = Order::where('invoice_id', '=', $in_voice_id )->first();
-
-    
     if($order !== null) {
         $order->getAttributes();
     } else {
@@ -88,6 +86,15 @@ Route::get('/order_added', function(){
 
     $menus = Menu::where('visibility', '=', '1')->get();
     return view('fontend.order', compact('menus', 'order'));
+});
+
+Route::get('/search', function(){
+    $searchTerm = request()->get('q');
+
+    $all_products = Product::where('product_title', 'LIKE', "%{$searchTerm}%")->get();
+    // dd($result);
+    $menus = Menu::where('visibility', '=', '1')->get();
+    return view('fontend.search', compact('menus', 'all_products'));
 });
 
 

@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.2/css/magnify.min.css" />
 	<link rel="stylesheet" type="text/css" href="{{asset('fontend/assets/css/main.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	@yield('css')
 </head>
 
 <body>
