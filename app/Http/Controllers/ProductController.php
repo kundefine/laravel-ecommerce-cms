@@ -51,6 +51,7 @@ class ProductController extends Controller
 
         $request->validate([
             'product_title' => 'required|min:3',
+            'cat_id' => 'required',
             'product_price' => 'required|numeric',
             'product_discount' => 'numeric|min:0|max:100',
             'product_measurement.color_name' => 'required',
@@ -109,7 +110,12 @@ class ProductController extends Controller
     }
 
     public function addProductImages(Request $request) {
-        $newProductId = Product::all()->last()->id + 1;
+        if($request->has('product_id')) {
+            $newProductId = request('product_id');
+        } else {
+            $newProductId = Product::all()->last()->id + 1;
+        }
+
         $uploadedFile = $request->file('product_images');
         if($request->has('thumbnail')) {
             $filename = request('thumbnail') . '-' . $newProductId . '.' .$uploadedFile->getClientOriginalExtension();
@@ -125,12 +131,17 @@ class ProductController extends Controller
         );
 
         $uploadedFile->move(public_path($fileUploadDir), $filename);
-        return response()->json(['filename'=> $filename, "new_product_id" => $newProductId, "req" => request('thumbnail')]);
+        return response()->json(['filename'=> $filename, "new_product_id" => $newProductId, "req" => request('product_id')]);
     }
 
     public function deleteImage(Request $request) 
     {
-        $newProductId = Product::all()->last()->id + 1;
+        if($request->has('product_id')) {
+            $newProductId = request('product_id');
+        } else {
+            $newProductId = Product::all()->last()->id + 1;
+        }
+
         $filename =  $request->get('filename');
         $fileUploadDir = 'product_images/product_'.$newProductId;
         $p = 'product_images/product_'.$newProductId . '/'.$filename;
@@ -142,6 +153,7 @@ class ProductController extends Controller
         }
         return response()->json(['success'=> $filename, "new_product_id" => $newProductId, 'path' => $p, 'delete' => $delete, 'pdelete' => $pelete]);
     }
+
 
 
     /**
@@ -163,7 +175,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $color_json = Storage::disk('public')->get('json/color_name.json');
+        $size_json = Storage::disk('public')->get('json/product_size.json');
+        $colors = json_decode($color_json, true);
+        $sizes = json_decode($size_json, true);
+        $categories = Catagory::where('visibility', '=', '1')->get();
+        return view('admin.product.edit', compact('categories', 'colors', 'sizes', 'product'));
     }
 
     /**
@@ -175,7 +192,77 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $newProductId = $product->id;
+
+        $request->validate([
+            'product_title' => 'required|min:3',
+            'cat_id' => 'required',
+            'product_price' => 'required|numeric',
+            'product_discount' => 'numeric|min:0|max:100',
+            'product_measurement.color_name' => 'required',
+            'product_measurement.size' => 'required',
+        ]);
+
+   
+
+        // product images
+        $fileUploadDir = public_path('product_images/product_'.$newProductId . '/');
+        $uploadedFile = [];
+        if( file_exists( $fileUploadDir ) && is_dir( $fileUploadDir ) ) {
+            $uploadedFile = array_values(array_diff(scandir($fileUploadDir), ['.', '..'])); 
+        }
+        $thumbnail = 'nothumbnail.jpg';
+        if(!empty($uploadedFile)) {
+            foreach($uploadedFile as $index => $upFile) {
+                if( strstr($upFile, 'thumbnail-' .  $newProductId) ) {
+                    $thumbnail = trim($upFile, "\"");
+                    unset($uploadedFile[$index]);
+                    array_values($uploadedFile);
+                    break;
+                }
+            }
+        } else {
+            $uploadedFile = null;
+        }
+
+        $discount_price = request('product_price');
+        if(!empty(request('product_discount'))) {
+            $discount_price = request('product_price') - ((request('product_price') * request('product_discount'))/ 100);
+        } else {
+            $discount_price = request('product_price') - ((request('product_price') * 0)/ 100);
+        }
+
+    
+
+     
+ 
+            $product->cat_id = request('cat_id');
+            $product->product_title = request('product_title');
+            $product->product_measurement_details = json_encode( request('product_measurement') );
+            $product->product_discription = request('product_discription');
+            $product->product_price = request('product_price');
+            $product->product_discount = !empty(request('product_discount')) ? request('product_discount') : 0;
+            $product->product_price_after_discount = $discount_price;
+            $product->product_thumbnail = $thumbnail;
+            $product->product_images = json_encode( $uploadedFile );
+            $product->product_stock = request('product_stock');
+            $product->visibility = request('visibility');
+        
+            $product->save();
+
+        return back()->with('success', 'Your product has been Updated successfully.');
+    }
+
+    
+    public function removeImage(Request $request) {
+        $filename =  $request->get('filename');
+        if (Storage::exists($filename)) {
+            $delete = Storage::delete($filename);
+            $pelete = unlink(public_path($filename) );
+        } else {
+            $delete = null;
+        }
+        return response()->json(['success'=> $filename, 'delete' => $delete, 'pdelete' => $pelete]);
     }
 
     /**

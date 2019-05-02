@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Menu;
-use App\page;
+use App\Page;
 use App\Catagory;
 
 class MenuController extends Controller

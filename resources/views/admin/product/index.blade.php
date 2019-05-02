@@ -32,6 +32,7 @@
                             <th>Product Id</th>
                             <th>Product Thumbnail</th>
                             <th>Product Title</th>
+                            <th>Category Name</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -53,7 +54,7 @@
 
                                 <td>{{$product->product_title}}</td>
                                 
-                                
+                                <td>{{$product->category()->get()->first()['title']}}</td>
                                 
                                 <td>
                                     <a href="/admin/product/{{$product->id}}/edit">

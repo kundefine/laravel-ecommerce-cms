@@ -43,12 +43,23 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/menu/store', 'MenuController@store');
     Route::patch('/admin/menu/{menu}/update', 'MenuController@update');
     Route::delete('/admin/menu/{menu}/delete', 'MenuController@destroy');
+
     Route::get('/admin/product', 'ProductController@index');
     Route::get('/admin/product/create', 'ProductController@create');
+
+    Route::get('/admin/product/{product}/edit', 'ProductController@edit');
+
     Route::post('/admin/product/store', 'ProductController@store');
-    Route::post('/admin/product/add-product-images', 'ProductController@addProductImages');
+    Route::patch('/admin/product/{product}/update', 'ProductController@update');
     Route::delete('/admin/product/{product}/delete', 'ProductController@destroy');
+
+
+
+    Route::post('/admin/product/add-product-images', 'ProductController@addProductImages');
     Route::delete('/admin/product/deleteImage', 'ProductController@deleteImage');
+    Route::delete('/admin/product/removeImage', 'ProductController@removeImage');
+
+
     Route::get('/admin/order', 'OrderController@index');
 
     Route::get('/admin/page', 'PageController@index');

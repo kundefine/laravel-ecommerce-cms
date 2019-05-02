@@ -30,7 +30,7 @@
 							<ul class="row-links">
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Careers</a></li>
-								<li><a href="#">Keedo Cares</a></li>
+								<li><a href="#">InboxKidz Cares</a></li>
 								<li><a href="#">Gift Card Balance</a></li>
 							</ul>
 						</div>
@@ -61,19 +61,19 @@
 					<div class="col-lg-3 col-md-3 col-sm-6">
 						<div class="single-row-items">
 							<img src={{asset("fontend/assets/img/chat-icon.png")}} alt="" class="icon">
-							<h3>Live Chat <span>Mon–Fri, 8am–5pm</span></h3>
+							<h3>Live Chat <span>Mon–Fri, 10am–8pm</span></h3>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6">
 						<div class="single-row-items">
 							<img src={{asset("fontend/assets/img/phone-icon.png")}} alt="" class="icon">
-							<h3>0860 222 339 <span>Mon–Fri, 8am–5pm </span></h3>
+							<h3>01755714884 <span>Mon–Fri, 10am–8pm </span></h3>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6">
 						<div class="single-row-items">
 							<img src={{asset("fontend/assets/img/envelope-icon.png")}} alt="" class="icon">
-							<h3>Email Us<span>We will respond as quickly as we can.</span></h3>
+							<h3>Email Us<span>admin@inboxkiz.com</span></h3>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-6">
@@ -90,7 +90,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="copyright-area">
-							<h2>© 2019 Keedo. All rights reserved.</h2>
+							<h2>© Copyright 2019 All Rights Reserved By InboxKidz</h2>
 						</div>
 					</div>
 				</div>

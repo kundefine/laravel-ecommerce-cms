@@ -17,6 +17,36 @@
             .theme-settings {
                 display: none;
             }
+            .prev-product-images {
+                display: flex;
+            }
+            .single-product-image {
+                width: 200px;
+                height: 150px;
+                margin-bottom: 65px;
+                margin-right: 16px;
+                border: 1px solid;
+            }
+            .single-product-image img {
+                width: 100%;
+                height: 100%;
+            }
+            .single-product-image button {
+                margin-top: 10px;
+            }
+
+            .product-prev-thumbnail img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .product-prev-thumbnail {
+                border: 1px solid;
+                padding: 5px;
+                box-sizing: border-box;
+                background: #907b7b;
+                margin-bottom: 10px;
+            }
         </style>
         <!-- EOF CSS INCLUDE -->          
     </head>
@@ -45,8 +75,9 @@
                     <br><br>
                 
                     {{-- Full Product Adding --}}
-                    <form action="/admin/product/store" method="post" enctype="multipart/form-data">
+                    <form action="/admin/product/{{$product->id}}/update" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('patch')
                         <div class="row">
                             <div class="col-md-8">
                                 <!-- START PANEL WITH CONTROL CLASSES -->
@@ -68,9 +99,11 @@
                                                                 <label class="col-md-2 control-label">Select Category</label>
                                                                 <div class="col-md-10">                                                                                
                                                                     <select class="form-control select" data-live-search="true" name="cat_id">
-                                                                        <option value="">Please select</option>
+                                                                        <option value="{{null}}">Select One</option>
                                                                     @foreach($categories as $category)
-                                                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                        <option value="{{$category->id}}" <?php if($product->cat_id === $category->id) echo "selected"; ?>>
+                                                                            {{$category->title}}
+                                                                        </option>
                                                                     @endforeach
                                                                     </select>
                                                                 </div>
@@ -82,28 +115,28 @@
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Title</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" value="{{ old('product_title') }}" placeholder="Product Title" name="product_title" required/>
+                                                                <input type="text" class="form-control" value="{{ $product->product_title }}" placeholder="Product Title" name="product_title" required/>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Discription</label>
                                                             <div class="col-md-10">
-                                                                <textarea class="summernote" name="product_discription" novalidate>{{ old('product_discription') }}</textarea>
+                                                                <textarea class="summernote" name="product_discription" novalidate>{{ $product->product_discription }}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product price</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" value="{{ old('product_price') }}" placeholder="Product Price" name="product_price" required/>
+                                                                <input type="text" class="form-control" value="{{ $product->product_price }}" placeholder="Product Price" name="product_price" required/>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-md-2 control-label">Product Discount</label>
                                                             <div class="col-md-10">
-                                                                <input type="text" class="form-control" placeholder="%" value="0" name="product_discount" value="{{ old('product_discount') }}"/>
+                                                                <input type="text" class="form-control" placeholder="%" name="product_discount" value="{{ $product->product_discount }}"/>
                                                             </div>
                                                         </div>
 
@@ -112,8 +145,8 @@
                                                             <label class="col-md-2 control-label">In Stock</label>
                                                             <div class="col-md-10">
                                                                 <select class="form-control select" name="product_stock">
-                                                                    <option value="1">Yes</option>
-                                                                    <option value="0">No</option>
+                                                                    <option value="1" @if($product->product_discount === 1) selected @endif>Yes</option>
+                                                                    <option value="0" @if($product->product_discount === 0) selected @endif>No</option>
                                                                 </select>
                                                             </div>                              
                                                         </div>
@@ -123,11 +156,11 @@
                                                             <label class="col-md-2 control-label">Visibility</label>
                                                             <div class="col-md-10">
                                                                 <div class="col-md-2">
-                                                                    <label class="check"><input type="radio" class="iradio" name="visibility" value="1"/> On</label>
+                                                                    <label class="check"><input type="radio" class="iradio" name="visibility" value="1" @if($product->visibility == 1) checked="checked" @endif /> On</label>
                                                                 
                                                                 </div>
                                                                 <div class="col-md-2">
-                                                                    <label class="check"><input type="radio" class="iradio" name="visibility" checked="checked" value="0"/> Off</label>
+                                                                    <label class="check"><input type="radio" class="iradio" name="visibility" @if($product->visibility == 0) checked="checked" @endif value="0"/> Off</label>
                                                                 </div>
                                                             </div>
                                                                 
@@ -164,14 +197,27 @@
                                                 <div class="row">
                                                     <div id="select_category" class="form-group dpn">
                                                         <label class="col-md-4 control-label">Available Color</label>
+
+                                                        <?php $pro_m_d = json_decode($product->product_measurement_details, true); ?>
                                                         <div class="col-md-8">                                                                                
                                                             <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[color_name][]">
-                                                            <option value="null" label="">Select One</option>
                                                             @foreach($colors as $color_name => $color_hex)
                                                                 <?php 
                                                                     $color_data_content = "<span style=\"background:{$color_name};padding:0px 10px; margin-right: 20px\" ></span>" . $color_name
                                                                 ?>
-                                                                <option  value="{{$color_name}}" data-content="{{$color_data_content}}"></option>
+                                                                
+                                                                <option  
+                                                                    value="{{$color_name}}" 
+                                                                    data-content="{{$color_data_content}}"
+                                                                    <?php 
+                                                                        if( isset($pro_m_d['color_name']) ) {
+                                                                            if( in_array($color_name , $pro_m_d['color_name'] ) ) {
+                                                                                echo "selected";
+                                                                            }
+                                                                        }
+                                                                    ?>
+                                                                >
+                                                                </option>
                                                             @endforeach
                                                             </select>
                                                         </div>
@@ -184,11 +230,22 @@
                                                         <label class="col-md-4 control-label">Available Size</label>
                                                         <div class="col-md-8">                                                                                
                                                             <select class="form-control select" multiple data-actions-box="true" data-live-search="true" name="product_measurement[size][]">
-                                                            <option value="{{null}}" label="">Select One</option>
                                                             @foreach($sizes as $cloth => $size_cat)
                                                                 
                                                                 @foreach($size_cat['babies'] as $size)
-                                                                <option  value="{{$size}}">
+                                                                <option  
+                                                                
+                                                                    value="{{$size}}"
+
+                                                                    <?php 
+                                                                        if( isset($pro_m_d['size']) ) {
+                                                                            if( in_array($size , $pro_m_d['size'] ) ) {
+                                                                                echo "selected";
+                                                                            }
+                                                                        }
+                                                                    ?>
+
+                                                                >
                                                                     {{$size}}
                                                                 </option>
                                                                 @endforeach
@@ -221,11 +278,18 @@
                                                     <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                                 </ul>                                
                                             </div>
-                                            <div class="panel-body">                                 
+                                            <div class="panel-body">
+                                                <div class="product-prev-thumbnail">
+                                                    @if(trim($product->product_thumbnail, "\"") === 'nothumbnail.jpg')
+                                                       <img src="https://via.placeholder.com/468x480?text=No+Image+Found">
+                                                    @else
+                                                        <img src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}">
+                                                    @endif
+                                                </div>                           
                                                 <div action="#" class="dropzone dropzone-mini" id="product_thumbnail"></div> 
                                             </div>      
                                             <div class="panel-footer">                                
-                                                
+                                                <p>upload new thumbnail it will replace previous thumbnail</p>
                                             </div>                            
                                         </div>
                                         <!-- END PANEL WITH CONTROL CLASSES -->
@@ -244,8 +308,25 @@
                                         </ul>                                
                                     </div>
                                     <div class="panel-body">
-                                        <div action="#" class="dropzone" id="product_images">
-                                        </div>                           
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="prev-product-images">
+                                                    @if($product->product_images != 'null')
+                                                        @foreach (json_decode($product->product_images) as $singleProImg )
+                                                        <div class="single-product-image">
+                                                            <img src="/product_images/product_{{$product->id}}/{{$singleProImg}}" alt="">
+                                                            <button id="/product_images/product_{{$product->id}}/{{$singleProImg}}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger prev-product-images-button">Remove</button>
+                                                        </div>
+                                                        @endforeach
+                                                    @else
+
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div action="#" class="dropzone" id="product_images"></div>                           
                                     </div>      
                                     <div class="panel-footer">                                
                                         
@@ -255,13 +336,13 @@
                             </div>
 
                             <div class="col-md-4 col-md-offset-4">
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Add Product</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Update Product</button>
                                 <br><br>
                             </div>
                             
                         </div>
              
-                    </form>
+</form>
 
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                    
@@ -366,10 +447,13 @@
                                 "fileName" : file.name
                             };
                             i++;
+                            $('.product-prev-thumbnail').remove();
                             console.log(fileList);
+
                         });
                         this.on('sending', function(file, xhr, formData){
                             formData.append('thumbnail', 'thumbnail');
+                            formData.append('product_id', {{$product->id}});
                         })
                     },
                     maxFiles: 1,
@@ -398,7 +482,7 @@
                             },
                             type: 'DELETE',
                             url: '{{ url("/admin/product/deleteImage") }}',
-                            data: {filename: name, thumbnail: 'thumbnail'},
+                            data: {filename: name, thumbnail: 'thumbnail', product_id : {{$product->id}}},
                             success: function (data){
                                 console.log(fileList);
                             },
@@ -411,6 +495,10 @@
                     },
                 });
                 
+
+
+
+
                 // product all images
                 $("div#product_images").dropzone({ 
                     headers: {
@@ -426,7 +514,11 @@
                             i++;
                             console.log(fileList);
                         });
+                        this.on('sending', function(file, xhr, formData){
+                            formData.append('product_id', {{$product->id}});
+                        });
                     },
+
                     paramName: "product_images",
                     url: "/admin/product/add-product-images",
                     acceptedFiles: ".jpeg,.jpg,.png,.gif",
@@ -452,7 +544,7 @@
                             },
                             type: 'DELETE',
                             url: '{{ url("/admin/product/deleteImage") }}',
-                            data: {filename: name},
+                            data: {filename: name, product_id : {{$product->id}} },
                             success: function (data){
                                 console.log("File has been successfully removed!!");
                                 console.log(fileList);
@@ -467,6 +559,33 @@
                 });
             });
 
+            
+
+        </script>
+
+
+
+
+        <script>
+            $('.prev-product-images-button').click(function(e){
+                e.preventDefault();
+                console.log($(this).parent().remove());
+
+                $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
+                            },
+                            type: 'DELETE',
+                            url: '{{ url("/admin/product/removeImage") }}',
+                            data: {filename: e.target.id},
+                            success: function (data){
+                                console.log("File has been successfully removed!!");
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
+            });
         </script>
 
     <!-- END SCRIPTS -->         
