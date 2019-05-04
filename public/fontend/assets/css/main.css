@@ -1790,3 +1790,115 @@ label#close-quick-buy-form {
 .payment_option {
   display: none;
 }
+
+#headSearch {
+  cursor: pointer;
+}
+
+#headSearch:hover {
+  color: #007bb6;
+}
+
+
+/* ----------------------------------------------------------------
+            [ Owl Carousel Slider ]
+-----------------------------------------------------------------*/
+.main-slider-content {
+  width: 100%;
+  margin-top: 10px;
+  letter-spacing: 1;
+}
+ 
+.main-slider-content h1 {
+  color: #455a64;
+  width: 200px;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 0px;
+  height: 40px;
+  display: inline;
+  margin: 0;
+}
+ 
+.product-slider {
+  margin-top: 30px;
+}
+ 
+.product-top img {
+  width: 100%;
+  min-height: 200px;
+}
+ 
+.product-top img:hover {
+  opacity: 0.5;
+}
+ 
+.product-bottom {
+  margin-top: 20px;
+}
+ 
+.product-bottom h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+}
+ 
+.product-bottom h5 {
+  font-size: 14px;
+  margin: 10px;
+}
+ 
+.product-sec-main {
+  width: 230px;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid #3333331a;
+}
+ 
+li.li-active {
+  display: initial;
+  padding-left: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ 
+ul.product-nav {
+  float: right;
+}
+ 
+.top-sec-pro {
+  border-bottom: 1px solid #c1c6c8;
+  padding: 5px;
+}
+ 
+.owl-theme .owl-nav [class*=owl-]:hover {
+  background: #929190b3;
+  color: #FFF;
+  text-decoration: none;
+  border: none;
+}
+ 
+.owl-theme .owl-nav [class*=owl-] {
+  border: none;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+}
+ 
+/* ----------------------------------------------------------------
+            [ End Owl Carousel Slider ]
+-----------------------------------------------------------------*/
+
+
+
+.bottom-banner img {
+  width: 590px;
+  height: 400px;
+}
+
+.bottom-banner {
+  justify-content: center;
+  display: flex;
+}

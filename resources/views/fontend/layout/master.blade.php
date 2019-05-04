@@ -20,6 +20,8 @@
 	<title>InboxKidz</title>
 	<!--Main Css 1.0-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.2/css/magnify.min.css" />
+	<link rel="stylesheet" type="text/css" href="{{asset('fontend/assets/css/owl.carousel.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('fontend/assets/css/owl.theme.default.min.css')}}" />
 	<link rel="stylesheet" type="text/css" href="{{asset('fontend/assets/css/main.css')}}" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 	@yield('css')
@@ -75,6 +77,9 @@
 	<script src={{asset("fontend/assets/js/propper.js")}}></script>
 	<!--Bootstrap 4.1.3-->
 	<script src={{asset("fontend/assets/js/bootstrap.min.js")}}></script>
+
+	<!--owl carousel min 4.1.3-->
+	<script src={{asset("fontend/assets/js/owl.carousel.min.js")}}></script>
 	<!--Uikit Js-->
 	<script src={{asset("fontend/assets/js/uikit.min.js")}}></script>
 	<script src={{asset("fontend/assets/js/uikit-icons.min.js")}}></script>

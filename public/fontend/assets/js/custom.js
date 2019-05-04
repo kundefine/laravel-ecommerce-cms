@@ -155,5 +155,31 @@ $(`#payment_method`).change(function(){
     function hideAllPaymentOption() {
         $('.payment_option').hide();
     }
-    
-})
+
+
+});
+
+/*---------------------------
+IMAGES SLIDER
+-----------------------------*/
+$(".owl-img").owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    smartSpeed: 1000,
+    responsive: {
+        0: {
+        items: 1
+        },
+        600: {
+        items: 3
+        },
+        1000: {
+        items: 5
+        }
+    }
+});

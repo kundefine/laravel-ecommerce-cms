@@ -10,7 +10,7 @@
 							@csrf
 							<div class="search-box">
 								<input type="text" class="search-input" placeholder="Search" name="q">
-								<button type="submit"><span class="fas fa-search"></span></button>
+								<button type="submit" id="headSearch"><span class="fas fa-search"></span></button>
 							</div>
 						</form>
 						

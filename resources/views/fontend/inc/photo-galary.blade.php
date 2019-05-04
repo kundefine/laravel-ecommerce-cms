@@ -12,7 +12,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image1.jpeg">
+								<a href="fontend/assets/img/image1.jpeg">
 									<img src="fontend/assets/img/image1.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -27,7 +27,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image2.jpeg">
+								<a href="fontend/assets/img/image2.jpeg">
 									<img src="fontend/assets/img/image2.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -42,7 +42,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image3.jpeg">
+								<a href="fontend/assets/img/image3.jpeg">
 									<img src="fontend/assets/img/image3.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -57,7 +57,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image4.jpeg">
+								<a href="fontend/assets/img/image4.jpeg">
 									<img src="fontend/assets/img/image4.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -72,7 +72,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image5.jpeg">
+								<a href="fontend/assets/img/image5.jpeg">
 									<img src="fontend/assets/img/image5.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -87,7 +87,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image6.jpeg">
+								<a href="fontend/assets/img/image6.jpeg">
 									<img src="fontend/assets/img/image6.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -104,7 +104,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image6.jpeg">
+								<a href="fontend/assets/img/image6.jpeg">
 									<img src="fontend/assets/img/image6.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -119,7 +119,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image5.jpeg">
+								<a href="fontend/assets/img/image5.jpeg">
 									<img src="fontend/assets/img/image5.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -134,7 +134,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image4.jpeg">
+								<a href="fontend/assets/img/image4.jpeg">
 									<img src="fontend/assets/img/image4.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -149,7 +149,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image3.jpeg">
+								<a href="fontend/assets/img/image3.jpeg">
 									<img src="fontend/assets/img/image3.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -164,7 +164,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image2.jpeg">
+								<a href="fontend/assets/img/image2.jpeg">
 									<img src="fontend/assets/img/image2.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -179,7 +179,7 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="assets/img/image1.jpeg">
+								<a href="fontend/assets/img/image1.jpeg">
 									<img src="fontend/assets/img/image1.jpeg" alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
