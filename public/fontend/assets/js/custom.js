@@ -165,6 +165,9 @@ IMAGES SLIDER
 $(".owl-img").owlCarousel({
     loop: true,
     margin: 10,
+    center:true,
+    autoWidth: true,
+    autoHeight:true,
     nav: true,
     dots: false,
     autoplay: true,
@@ -173,13 +176,41 @@ $(".owl-img").owlCarousel({
     smartSpeed: 1000,
     responsive: {
         0: {
-        items: 1
+            items: 1
         },
         600: {
-        items: 3
+            items: 3
         },
         1000: {
-        items: 5
+            items: 10,
+        }
+    }
+});
+
+/*---------------------------
+IMAGES SLIDER
+-----------------------------*/
+$(".owl-img2").owlCarousel({
+    loop: true,
+    margin: 10,
+    center:true,
+    autoWidth: true,
+    autoHeight:true,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    autoplayHoverPause: true,
+    smartSpeed: 1000,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 3
+        },
+        1000: {
+            items: 10,
         }
     }
 });

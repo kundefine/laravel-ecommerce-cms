@@ -205,7 +205,7 @@
 									@endif
 									<h4 class="web-name">Keedo</h4>
 									<h4 class="product-name"><a href="/product/{{$product->id}}">{{$product->product_title}}</a></h4>
-									<h3 class="price"><del>{!!"&#36;"!!}{{$product->product_price}}</del><ins>{!!"&#36;"!!}{{$product->product_price_after_discount}}</ins></h3>
+									<h3 class="price"><del>BDT{{$product->product_price}}</del><ins> BDT{{$product->product_price_after_discount}}</ins></h3>
 								</div>
 							</div>
 							@endforeach

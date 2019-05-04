@@ -15,7 +15,18 @@
                         <img src="{{asset('/fontend/assets/img/banner/01.jpg')}}" alt="">
                     </div>
                     
-
+                    <?php 
+                        $products = config('global.all_product');
+                        $newArrivals = (new $products)
+                                        ->where([
+                                            ['cat_id', '=', 21],
+                                            ['visibility', '=', 1],
+                                        ])
+                                        ->get()
+                                        ->take(10);
+                        
+                        
+                    ?>
 
                     {{-- New Arrival --}}
                     <div class="container main-slider-content">
@@ -28,51 +39,23 @@
                         </div>
                         <div class="row product-slider">
                             <div class="owl-carousel owl-img owl-theme">
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_1.jpg ")}} alt=""></a>
+                                @foreach ( $newArrivals as $newArrival  )
+                                    <div class="product-sec-main">
+                                        <div class="product-top">
+                          
+                                            @if(trim($newArrival->product_thumbnail, "\"") === 'nothumbnail.jpg')
+                                                <a href="/product/{{$newArrival->id}}"><img src="https://via.placeholder.com/468x480?text=No+Image+Found"></a>
+                                            @else
+                                                <a href="/product/{{$newArrival->id}}"><img src="/product_images/product_{{$newArrival->id}}/{{trim($newArrival->product_thumbnail, "\"")}}"></a>
+                                            @endif
+                                  
+                                        </div>
+                                        <div class="product-bottom text-center">
+                                            <h4>{{$newArrival->product_title}}</h4>
+                                            <h5><del>BDT{{$newArrival->product_price}}</del><ins> BDT{{$newArrival->product_price_after_discount}}</h5>
+                                        </div>
                                     </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_2.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_3.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_4.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_5.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
+                               @endforeach
                             </div>
                         </div>
                     </div>
@@ -89,52 +72,38 @@
                             </div>
                         </div>
                         <div class="row product-slider">
-                            <div class="owl-carousel owl-img owl-theme">
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_1.jpg ")}} alt=""></a>
+                            <div class="owl-carousel owl-img2 owl-theme">
+                                <?php 
+                                    $products = config('global.all_product');
+                                    $Exclusives = (new $products)
+                                                    ->where([
+                                                        ['cat_id', '=', 22],
+                                                        ['visibility', '=', 1],
+                                                    ])
+                                                    ->get()
+                                                    ->take(10);
+                                    
+                                    
+                                ?>
+
+                                @foreach ( $Exclusives as $Exclusive  )
+                                    <div class="product-sec-main">
+                                        <div class="product-top">
+                          
+                                            @if(trim($Exclusive->product_thumbnail, "\"") === 'nothumbnail.jpg')
+                                                <a href="/product/{{$Exclusive->id}}"><img src="https://via.placeholder.com/468x480?text=No+Image+Found"></a>
+                                            @else
+                                                <a href="/product/{{$Exclusive->id}}"><img src="/product_images/product_{{$Exclusive->id}}/{{trim($Exclusive->product_thumbnail, "\"")}}"></a>
+                                            @endif
+                                  
+                                        </div>
+                                        <div class="product-bottom text-center">
+                                            <h4>{{$Exclusive->product_title}}</h4>
+                                            <h5><del>BDT{{$Exclusive->product_price}}</del><ins> BDT{{$Exclusive->product_price_after_discount}}</h5>
+                                        </div>
                                     </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_2.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_3.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_4.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
-                                <div class="product-sec-main">
-                                    <div class="product-top">
-                                        <a href="#"> <img src={{asset( "fontend/assets/img/latest/gal_5.jpg ")}} alt=""></a>
-                                    </div>
-                                    <div class="product-bottom text-center">
-                                        <h4>KONKA KE43MI311N (43" SMART LED)</h4>
-                                        <h5>BDT 450.00</h5>
-                                    </div>
-                                </div>
+                               @endforeach
+                                
                             </div>
                         </div>
                     </div>
