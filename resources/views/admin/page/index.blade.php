@@ -16,7 +16,7 @@
         <!-- START PANEL WITH CONTROL CLASSES -->
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">All Product</h3>
+                <h3 class="panel-title">All Pages</h3>
                 <ul class="panel-controls">
                     <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                 </ul>                                
@@ -53,9 +53,17 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="/admin/page/{{$page->id}}/edit">
-                                        <span class="fa fa-edit"></span> Edit
-                                    </a>
+
+                                @if($page->slug === "home")
+                                        <a href="/admin/page/{{$page->id}}/home-edit">
+                                            <span class="fa fa-edit"></span> Edit
+                                        </a>
+                                    @else
+                                        <a href="/admin/page/{{$page->id}}/edit">
+                                            <span class="fa fa-edit"></span> Edit
+                                        </a>
+                                @endif
+                                    
                                 </td>
 
                                 <td>

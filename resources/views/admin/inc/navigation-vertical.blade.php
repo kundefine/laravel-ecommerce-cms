@@ -5,11 +5,16 @@
     </li>
     <!-- END TOGGLE NAVIGATION -->
     <!-- SEARCH -->
-    <li class="xn-search">
+    {{-- <li class="xn-search">
         <form role="form">
             <input type="text" name="search" placeholder="Search..."/>
         </form>
-    </li>   
+    </li>    --}}
+
+    <li class="xn-icon-button">
+        <a href="/" target="_blank" ><span class="fa fa-globe"></span></a>                        
+    </li> 
+
     <!-- END SEARCH -->
     <!-- SIGN OUT -->
     <li class="xn-icon-button pull-right">

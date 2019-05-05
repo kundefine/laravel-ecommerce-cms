@@ -36,6 +36,7 @@
                             <th>User Information</th>
                             <th>Order Item</th>
                             <th>Payment Information</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +123,16 @@
                                         @endif
                                     </div>
                                     
+                                </td>
+
+                                <td>
+                                    <form action="/admin/order/{{$order->id}}/delete" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure??')">
+                                            <span class="fa fa-trash-o"></span> Delete
+                                        </button>
+                                    </form>
                                 </td>
 
 

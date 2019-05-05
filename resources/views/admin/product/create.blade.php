@@ -70,7 +70,7 @@
                                                                     <select class="form-control select" data-live-search="true" name="cat_id">
                                                                         <option value="">Please select</option>
                                                                     @foreach($categories as $category)
-                                                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                                                        <option value="{{$category->id}}">{{$category->title}} - {{$category->id}}</option>
                                                                     @endforeach
                                                                     </select>
                                                                 </div>

@@ -63,7 +63,7 @@
         $('#select_category select').change(function(){
             console.log($(this).val());
             if($(this).val() !== "null") {
-                $('input[name="menu_title"]').val($('#select_category select option:selected').text());
+                $('input[name="menu_title"]').val($('#select_category select option:selected').attr('custom_title'));
                 $('#menu_link').val('');
                 $('#menu_link').val(window.location.host + '/category/' + $(this).val());
             } else {
@@ -76,9 +76,10 @@
 
 @section('right-section')
 
-<form action="/admin/menu/store" id="category_create" method="post" enctype="multipart/form-data">
+<form action="/admin/menu/{{$menu->id}}/update" id="category_create" method="post" enctype="multipart/form-data">
 
 @csrf
+@method('PATCH')
 
 <div class="row">
     <div class="col-md-12">
@@ -122,9 +123,9 @@
                                                 <option value="null">Select One</option>
                                             @foreach($categories as $category)
                                                 @if( $menu->menu_type == "category_link" && $menu->cat_id == $category->id )
-                                                    <option value="{{$category->id}}" selected>{{$category->title}}</option>
+                                                    <option value="{{$category->id}}" custom_title="{{$category->title}}" selected>{{$category->title}} - {{$category->id}}</option>
                                                 @else
-                                                 <option value="{{$category->id}}">{{$category->title}}</option>
+                                                    <option value="{{$category->id}}" custom_title="{{$category->title}}">{{$category->title}} - {{$category->id}}</option>
                                                 @endif
                                             @endforeach
                                             </select>

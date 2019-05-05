@@ -103,7 +103,7 @@
                         <div class="col-md-12">
                             @if(count( $categories ))
                                 @foreach($categories as $category)                                                                                                      
-                                    <label class="check dpb"><input type="checkbox" class="icheckbox" name="child_categories[{{$category->id}}]" value="{{$category->title}}"/>{{$category->title}}</label>    
+                        <label class="check dpb"><input type="checkbox" class="icheckbox" name="child_categories[{{$category->id}}]" value="{{$category->title}}"/>{{$category->title}} - {{$category->id}}</label>    
                                 @endforeach
                             @else
                                 <p>No Category Found</p>

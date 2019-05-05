@@ -199,17 +199,17 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="single-items">
-						<img src="fontend/assets/img/Mobicred_2019.jpg" alt="" class="single-img">
+						<img src="fontend/assets/img/banner/Banner-1.png" alt="" class="single-img">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="single-items">
-						<img src="fontend/assets/img/Discovery_Miles_2019.jpg" alt="" class="single-img">
+						<img src="fontend/assets/img/banner/Banner-2.png" alt="" class="single-img">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="single-items">
-						<img src="fontend/assets/img/Keedo_Cares_2019.jpg" alt="" class="single-img">
+						<img src="fontend/assets/img/banner/Banner-3.png" alt="" class="single-img">
 					</div>
 				</div>
 			</div>

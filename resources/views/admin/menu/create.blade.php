@@ -63,7 +63,7 @@
         $('#select_category select').change(function(){
             console.log($(this).val());
             if($(this).val() !== "null") {
-                $('input[name="menu_title"]').val($('#select_category select option:selected').text());
+                $('input[name="menu_title"]').val($('#select_category select option:selected').attr('custom_title'));
                 $('#menu_link').val('');
                 $('#menu_link').val(window.location.host + '/category/' + $(this).val());
             } else {
@@ -124,7 +124,7 @@
                                             <select class="form-control select" data-live-search="true" name="cat_id">
                                                 <option value="null">Select One</option>
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                            <option value="{{$category->id}}" custom_title="{{$category->title}}">{{$category->title}} - {{$category->id}}</option>
                                             @endforeach
                                             </select>
                                         </div>

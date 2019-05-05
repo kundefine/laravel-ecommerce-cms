@@ -82,7 +82,7 @@
 																	@endforeach
 																</div>
 																<div class="col-4 single-collum most-viewed-items">
-																	<h2>most viewed items</h2>
+																	{{-- <h2>most viewed items</h2>
 																	<div class="single-viewed-items">
 																		<img src={{asset("fontend/assets/img/147476.jpg")}} alt="" class="img-fluid">
 																		<h3>keedo</h3>
@@ -92,7 +92,7 @@
 																		<img src={{asset("fontend/assets/img/147476.jpg")}} alt="" class="img-fluid">
 																		<h3>keedo</h3>
 																		<p>Pretty Romper</p>
-																	</div>
+																	</div> --}}
 																</div>
 																<div class="col-4 single-collum baby-full-img">
 																	<img src="{{asset($menu->feature_image)}}" alt="" class="img-fluid">

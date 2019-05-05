@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/menu', 'MenuController@index');
     Route::get('/admin/menu/create', 'MenuController@create');
     Route::get('/admin/menu/{menu}/edit', 'MenuController@edit');
+    Route::patch('/admin/menu/{menu}/update', 'MenuController@update');
     Route::post('/admin/menu/store', 'MenuController@store');
     Route::patch('/admin/menu/{menu}/update', 'MenuController@update');
     Route::delete('/admin/menu/{menu}/delete', 'MenuController@destroy');
@@ -61,11 +62,14 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/admin/order', 'OrderController@index');
+    Route::delete('/admin/order/{order}/delete', 'OrderController@destroy');
 
     Route::get('/admin/page', 'PageController@index');
     Route::get('/admin/page/create', 'PageController@create');
     Route::get('/admin/page/{page}/edit', 'PageController@edit');
+    Route::get('/admin/page/{page}/home-edit', 'PageController@homeEdit');
     Route::patch('/admin/page/{page}/update', 'PageController@update');
+    Route::patch('/admin/page/{page}/home-update', 'PageController@homeUpdate');
     Route::post('/admin/page/store', 'PageController@store');
     Route::delete('/admin/page/{page}/delete', 'PageController@destroy');
 

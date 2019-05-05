@@ -102,7 +102,7 @@
                                                                         <option value="{{null}}">Select One</option>
                                                                     @foreach($categories as $category)
                                                                         <option value="{{$category->id}}" <?php if($product->cat_id === $category->id) echo "selected"; ?>>
-                                                                            {{$category->title}}
+                                                                            {{$category->title}} - {{$category->id}}
                                                                         </option>
                                                                     @endforeach
                                                                     </select>

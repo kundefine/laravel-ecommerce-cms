@@ -12,7 +12,20 @@
 
                     {{-- Top Banner --}}
                     <div class="top-banner">
-                        <img src="{{asset('/fontend/assets/img/banner/01.jpg')}}" alt="">
+                        <?php 
+                            $home_data = json_decode($home['discription'], true);
+
+                            if(!empty($home_data)) {
+                                $top_banner = $home_data['top_banner'];
+                            }
+                        ?>
+                        @if(!empty($home_data))
+                            <a href="{{$top_banner['link']}}">
+                                <img src="/{{$top_banner['path']}}" alt=""> 
+                            </a>
+                            
+                        @endif
+                        
                     </div>
                     
                     <?php 

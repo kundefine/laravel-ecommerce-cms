@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
 use App\Menu;
+use App\Page;
+use App\Catagories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -118,4 +120,51 @@ class PageController extends Controller
         $page = Page::where('slug', '=', $slug)->firstOrFail();
         return view('fontend.page', compact('menus', 'page'));
     }
+
+    public function homeEdit(Page $page) {
+        $all_link = Page::all_link();
+        return view('admin.page.homeEdit', compact('page', 'all_link'));
+    }
+
+    public function homeUpdate(Request $request, Page $page) {
+        $pre_home_data = json_decode($page->discription, true);
+        if(!is_array($pre_home_data)) {
+            $pre_home_data = [];
+        }
+
+        if($request->has('top_banner')) {
+            // upload your top banner
+            $top_banner = $request->file('top_banner');
+            $filename = 'top_banner' . '.' . $top_banner->getClientOriginalExtension();
+            $uploadDir = 'home_banner';
+            
+            $storage = Storage::disk('local')->putFileAs(
+                $uploadDir,
+                $top_banner,
+                $filename
+            );
+
+            
+            $home_data = [
+                "path" => $storage,
+                "link" => request('top_banner_url')
+            ];
+            $pre_home_data['top_banner'] = $home_data;
+
+            $top_banner->move(public_path($uploadDir), $filename);
+
+            $page->discription = json_encode($pre_home_data);
+            $page->save();
+
+            dd($page->discription);
+        }
+
+        
+
+        
+
+
+    }
+
+
 }

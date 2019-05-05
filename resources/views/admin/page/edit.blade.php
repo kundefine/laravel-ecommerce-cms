@@ -26,7 +26,7 @@
         <!-- START PANEL WITH CONTROL CLASSES -->
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Create Category</h3>
+                <h3 class="panel-title">Edit Page</h3>
                 <ul class="panel-controls">
                     <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                 </ul>                                
@@ -71,35 +71,6 @@
         <!-- END PANEL WITH CONTROL CLASSES -->
     </div>
 
-    {{-- <div class="col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Select A Menu</h3>
-                <ul class="panel-controls">
-                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                    <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                    <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                    <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                </ul>                                
-            </div>
-            <div class="panel-body">
-                <div class="form-horizontal" role="form">
-                   <div class="form-group">                                        
-                        <div class="col-md-12">
-                            @foreach($menus as $menu)                                                                                                             
-                                <label class="check dpb"><input type="radio" class="iradio" name="menu_id" value="{{$menu->id}}"/>{{$menu->title}}</label>
-                            @endforeach
-                        </div>
-                    </div>                                               
-                </div>
-            </div>      
-            <div class="panel-footer">                                
-                
-            </div>                            
-        </div>
-
-  
-    </div> --}}
 
 
 

@@ -133,6 +133,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        if($order->delete())
+            return back()->with('success', 'Delete Successfull');
     }
 }

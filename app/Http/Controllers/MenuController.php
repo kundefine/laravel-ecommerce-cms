@@ -50,20 +50,36 @@ class MenuController extends Controller
             'menu_type' => 'required',
             'visibility' => 'required'
         ]);
-        $path = null;
+
+        $feature_image_store_path = null;
         if ($request->hasFile('feature_image')) {
-            //
-            $file = request()->file('feature_image');
-            $path = $request->file('feature_image')->storeAs('menu_feature_image', request('menu_type') . '-' . time() . '.' . $file->getClientOriginalExtension());
-            $renameFileName = str_replace("menu_feature_image/", "", $path);
-            $file->move(base_path('\public\menu_feature_image'), $renameFileName);
+            if(Menu::MAX('id')->get()->count()) {
+                $menu_id = (Menu::MAX('id')->get()->first()->id) + 1;
+            } else {
+                $menu_id = uniqid();
+            }
+
+      
+            // upload your top feature image
+            $feature_image = $request->file('feature_image');
+            $filename = 'menu_feature_image-' . ($menu_id) . '.' . $feature_image->getClientOriginalExtension();
+            $uploadDir = 'menu_feature_images';
+
+            $feature_image_store_path = $storage = Storage::disk('local')->putFileAs(
+                $uploadDir,
+                $feature_image,
+                $filename
+            );
+
+            $feature_image->move(public_path($uploadDir), $filename);
+
         }
 
         $menu = new Menu();
 
 
         $menu->title = request('menu_title');
-        $menu->feature_image = $path;
+        $menu->feature_image = $feature_image_store_path;
         $menu->link = 'http://' . request('menu_link');
         $menu->visibility = request('visibility');
         $menu->menu_type = request('menu_type');
@@ -110,7 +126,47 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        $request->validate([
+            'feature_image' => 'mimes:jpeg,bmp,png',
+            'menu_title' => 'required|min:3',
+            'menu_link' => 'required',
+            'menu_type' => 'required',
+            'visibility' => 'required'
+        ]);
+
+        if ($request->hasFile('feature_image')) {
+            // upload your top feature image
+            $feature_image = $request->file('feature_image');
+            $filename = 'menu_feature_image-' . $menu->id . '.' . $feature_image->getClientOriginalExtension();
+            $uploadDir = 'menu_feature_images';
+
+            $feature_image_store_path = $storage = Storage::disk('local')->putFileAs(
+                $uploadDir,
+                $feature_image,
+                $filename
+            );
+
+            $feature_image->move(public_path($uploadDir), $filename);
+
+            $menu->feature_image = $feature_image_store_path;
+        }
+
+
+
+
+        $menu->title = request('menu_title');
+        $menu->link = 'http://' . request('menu_link');
+        $menu->visibility = request('visibility');
+        $menu->menu_type = request('menu_type');
+        if(request('menu_type') === 'category_link') $menu->cat_id = request('cat_id'); else $menu->cat_id = null;
+        if(request('menu_type') === 'page_link') $menu->page_id = request('page_id'); else $menu->page_id = null;
+
+        $menu->save();
+
+        return back()->with('success', 'Menu has been Updated successfully.');
+
+
+        
     }
 
     /**

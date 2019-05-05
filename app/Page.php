@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Catagory;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
@@ -29,5 +31,29 @@ class Page extends Model
             return $prev_slug;
         }
         
+    }
+
+
+
+
+
+    public static function all_category_link() {
+        
+        $all_category_link = Catagory::all()->map(function($cat){
+            return url('/category/' . $cat->id);
+        })->toArray();
+
+        return $all_category_link;
+    }
+
+    public static function all_page_link() {
+        $all_page_link = Page::all()->map(function($page){
+            return url('/page/' . $page->slug);
+        })->toArray();
+        return $all_page_link;
+    }
+
+    public static function all_link() {
+        return $all_link = array_merge(static::all_category_link(), static::all_page_link());
     }
 }

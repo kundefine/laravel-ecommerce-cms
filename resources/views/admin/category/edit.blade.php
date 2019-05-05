@@ -115,7 +115,7 @@
                                         type="checkbox" 
                                         class="icheckbox" 
                                         name="child_categories[{{$category->id}}]" 
-                                        value="{{$category->title}}"/>{{$category->title}}
+                                        value="{{$category->title}}"/>{{$category->title}} - {{$category->id}}
                                     </label>    
                                 @endforeach
                             @else
