@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\Page;
 use App\Catagories;
+use App\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -110,9 +111,11 @@ class PageController extends Controller
 
     public function home() {
         $menus = Menu::where('visibility', '=', '1')->get();
+        $bottomHomeBanner = Banner::where('banner_type', '=', 'bottom_home_banner')->get();
+        $bottomHomeBanner2 = Banner::where('banner_type', '=', 'bottom_home_banner2')->get();
         $home = Page::where('slug', '=', 'home')->first()->getAttributes();
 
-        return view('fontend.index', compact('menus', 'home'));
+        return view('fontend.index', compact('menus', 'home', 'bottomHomeBanner', 'bottomHomeBanner2'));
     }
 
     public function page($slug) {
@@ -156,14 +159,15 @@ class PageController extends Controller
             $page->discription = json_encode($pre_home_data);
             $page->save();
 
-            dd($page->discription);
+            
         }
+        return back()->with('success', 'Page has been Updated successfully.');
 
+    }
+
+    public function addBottomBanner(Request $request, Page $page) {
         
-
-        
-
-
+        return response()->json(["req" => request()->all()]);
     }
 
 

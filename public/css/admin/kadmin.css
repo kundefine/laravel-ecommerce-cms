@@ -1,0 +1,15 @@
+.form-control {
+    height: 34px !important;
+}
+
+
+.banner-data {}
+
+.banner-data tr td img {
+    height: 100px;
+}
+
+.banner-data tr td {
+    vertical-align: middle !important;
+    text-align: center;
+}

@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="{{ asset("css/admin/all_others.css") }}" >     
         <link rel="stylesheet" href="{{ asset("css/admin/message_box.css") }}" >     
         <link rel="stylesheet" href="{{ asset("css/admin/alerts.css") }}" >     
+        <link rel="stylesheet" href="{{ asset("css/admin/kadmin.css") }}" >     
         
         @yield('additional-css')
 

@@ -48,7 +48,12 @@ class Page extends Model
 
     public static function all_page_link() {
         $all_page_link = Page::all()->map(function($page){
-            return url('/page/' . $page->slug);
+            if($page->slug === 'home') {
+                return url('/');
+            } else {
+
+                return url('/page/' . $page->slug);
+            }
         })->toArray();
         return $all_page_link;
     }

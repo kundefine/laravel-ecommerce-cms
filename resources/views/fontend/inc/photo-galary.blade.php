@@ -197,21 +197,20 @@
 	<section class="widget-static-image-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<div class="single-items">
-						<img src="fontend/assets/img/banner/Banner-1.png" alt="" class="single-img">
+				
+
+				@if(count($bottomHomeBanner2))
+				@foreach ($bottomHomeBanner2 as $homeBottomBannerSingle)
+					<div class="col-lg-4">
+						<div class="single-items">
+							<a href="{{$homeBottomBannerSingle->banner_url}}" target="_blank">
+								<img src="{{$homeBottomBannerSingle->banner_img}}" alt="">
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-items">
-						<img src="fontend/assets/img/banner/Banner-2.png" alt="" class="single-img">
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-items">
-						<img src="fontend/assets/img/banner/Banner-3.png" alt="" class="single-img">
-					</div>
-				</div>
+				@endforeach
+					
+				@endif
 			</div>
 		</div>
 	</section>

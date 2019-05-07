@@ -62,6 +62,17 @@
                         </ul>
                     </li>
 
+                    <li class="xn-openable">
+                        <a href="#"><span class="fa fa-columns"></span> <span class="xn-text">Banner</span></a>
+                        <ul>
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/banner/home-bottom-banner";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/banner/home-bottom-banner"><span class="fa fa-angle-double-right"></span>Home Bottom Banner</a></li> 
+                            
+                            <?php $current_url = url()->current(); $my_url = url('') . "/admin/banner/home-bottom-banner2";?>
+                            <li class="{{$my_url === $current_url ? 'active' : ''}}"><a href="/admin/banner/home-bottom-banner2"><span class="fa fa-angle-double-right"></span>Home Bottom Banner 2</a></li>    
+                        </ul>
+                    </li>
+
 
                     
                 </ul>

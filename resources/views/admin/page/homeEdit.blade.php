@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset("css/admin/form_elements.css") }}" >    
     <link rel="stylesheet" href="{{ asset("css/admin/tabs.css") }}" >    
     <link rel="stylesheet" href="{{ asset("css/summernote/summernote.css") }}" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .form-control {
             height: 34px;
@@ -23,6 +24,26 @@
         .top_banner_preview img {
             height: 100%;
         }
+
+        
+        .bottom_banner_tbl {
+            border: 1px solid #ddd;
+        }
+        table.bottom_banner_tbl td img {
+            width: 136px;
+            height: 77px;
+        }
+        .bottom_banner_tbl tr td {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+        .errors {
+            border: 1px solid darkred;
+        }
+        .errors-feedback {
+            margin-top: 10px;
+            padding: 5px;
+        }
     </style>
        
 @endsection
@@ -30,7 +51,7 @@
 @section('aditional-script')
         <script type="text/javascript" src="{{asset('js/plugins/jquery/jquery.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/plugins/jquery/jquery-ui.min.js')}}"></script>
-        <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap.min.js")}}></script>                
+        <script type="text/javascript" src={{asset("js/plugins/bootstrap/bootstrap.min.js")}}></script>                 
         <!-- END PLUGINS -->
         
         <!-- THIS PAGE PLUGINS -->    
@@ -49,7 +70,10 @@
             });
         </script>
 
-        <!-- END PAGE PLUGINS -->
+
+
+
+
     
 @endsection
 
@@ -61,6 +85,7 @@
 @method('patch')
 
 <div class="row">
+    {{-- Home Edit --}}
     <div class="col-md-12">
         <!-- START PANEL WITH CONTROL CLASSES -->
         <div class="panel panel-primary">
@@ -105,7 +130,7 @@
     </div>
 
 
-    {{-- Home Banner --}}
+    {{-- Home Top Banner --}}
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -117,7 +142,7 @@
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-6">                                     
+                        <div class="col-md-6">                            
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -171,9 +196,8 @@
         </div>
     </div>
 
-        
 
-
+    
     <div class="col-md-4 col-md-offset-4">
         <button type="submit" class="btn btn-primary btn-block">Update Page</button>
     </div>

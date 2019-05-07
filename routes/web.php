@@ -70,8 +70,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/page/{page}/home-edit', 'PageController@homeEdit');
     Route::patch('/admin/page/{page}/update', 'PageController@update');
     Route::patch('/admin/page/{page}/home-update', 'PageController@homeUpdate');
+
+
+
+    Route::get('/admin/banner/home-bottom-banner', 'BannerController@bottomBannerIndex');
+    Route::post('/admin/banner/add-home-bottom-banner', 'BannerController@addBottomBannerCreate');
+    Route::delete('/admin/banner/delete-bottom-banner/{homeBottomBannerId}/delete', 'BannerController@deleteBottomBannerDestroy');
+
+    Route::get('/admin/banner/home-bottom-banner2', 'BannerController@bottomBannerIndex2');
+    Route::post('/admin/banner/add-home-bottom-banner2', 'BannerController@addBottomBannerCreate');
+    Route::delete('/admin/banner/delete-bottom-banner2/{homeBottomBannerId}/delete', 'BannerController@deleteBottomBannerDestroy');
+
+
+
+
+
     Route::post('/admin/page/store', 'PageController@store');
     Route::delete('/admin/page/{page}/delete', 'PageController@destroy');
+
+
 
 });
 

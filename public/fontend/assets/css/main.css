@@ -1940,3 +1940,9 @@ ul.product-nav {
 }
 
 /* Equal Heights for OwlCarousel 2 end*/
+
+.magnify>.magnify-lens {
+  width: 500px;
+  height: 250px;
+  border-radius: 0px;
+}

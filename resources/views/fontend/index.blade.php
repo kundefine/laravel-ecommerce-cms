@@ -125,8 +125,15 @@
                     <div class="bottom-banner">
                         <div class="row">
                             <div class="col-md-12 justify-content-center">
-                                <img src={{asset('/fontend/assets/img/banner/02.jpg')}} alt="">
-                                <img src={{asset('/fontend/assets/img/banner/03.jpg')}} alt="">
+                                    @if(count($bottomHomeBanner))
+                                    @foreach ($bottomHomeBanner as $homeBottomBannerSingle)
+                                        <a href="{{$homeBottomBannerSingle->banner_url}}" target="_blank">
+                                            <img src="{{$homeBottomBannerSingle->banner_img}}" alt="">
+                                        </a>
+                                    @endforeach
+                                        
+                                    @endif
+
                             </div>
                         </div>
                     </div>
