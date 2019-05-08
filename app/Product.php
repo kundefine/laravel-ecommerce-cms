@@ -36,4 +36,8 @@ class Product extends Model
         }
         
     }
+
+    public function filterProduct() {
+        return $this;
+    }
 }
