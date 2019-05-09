@@ -1,3 +1,5 @@
+@include('fontend.inc.registration-sidebar')
+
 <header class="header-area">
 		<div class="header-top">
 			<h2>Free Shipping on Orders over TK.750</h2>
@@ -22,12 +24,18 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="right-short-menu">
-							<a href="" class="single-items">
-								<span class="fas fa-map-marker-alt"></span> Stores
-							</a>
-							<a href="" class="single-items">
-								<span class="fas fa-user"></span> Account
-							</a>
+								<a href="" class="single-items">
+									<span class="fas fa-map-marker-alt"></span> Stores
+								</a>
+							@if(!auth()->check())
+								<a href="" class="single-items" id="registrationSideView">
+									<span class="fas fa-user"></span> Account
+								</a>
+							@else
+								<a href="/user/account" class="single-items" id="">
+									<span class="fas fa-user"></span> {{ auth()->user()->name }}
+								</a>
+							@endif
 							<a id="full-cart-button" href="" class="single-items relative">
 								<span class="fas fa-shopping-cart"><div id="cart-total-item" class="cart-total-item">{{Cart::getContent()->count()}}</div></span> cart
 							</a>
@@ -68,17 +76,7 @@
 															<div class="row">
 																<div class="col-4 single-collum">
 																	@foreach ($child_cat as $index => $value )
-																	<a href="{{URL::to('/')}}/category/{{$index}}">{{ $value }}</a>
-																	{{-- <a href="#">sets</a>
-																	<a href="#">Dresses</a>
-																	<a href="#">Tops and Tees</a>
-																	<a href="#">Rompers, Growers and Playsuits</a>
-																	<a href="#">Trousers, Pants and Leggings</a>
-																	<a href="#">Cardis, Jackets and Warmers</a>
-																	<a href="#">Skirts</a>
-																	<a href="#">Sleepwear</a>
-																	<a href="#">Shoes</a>
-																	<a href="#">Accessories</a> --}}
+																		<a href="{{URL::to('/')}}/category/{{$index}}">{{ $value }}</a>
 																	@endforeach
 																</div>
 																<div class="col-4 single-collum most-viewed-items">

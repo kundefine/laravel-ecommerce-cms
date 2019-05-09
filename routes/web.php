@@ -52,7 +52,7 @@ Route::get('/search', function(){
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin', 'AdminController@index');
     Route::get('/admin/category', 'CatagoryController@index');
     Route::get('/admin/category/create', 'CatagoryController@create');

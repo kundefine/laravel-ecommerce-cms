@@ -12,8 +12,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image1.jpeg">
-									<img src="fontend/assets/img/image1.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/1.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/1.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -27,8 +27,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image2.jpeg">
-									<img src="fontend/assets/img/image2.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/2.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/2.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -42,8 +42,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image3.jpeg">
-									<img src="fontend/assets/img/image3.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/3.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/3.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -57,8 +57,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image4.jpeg">
-									<img src="fontend/assets/img/image4.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/4.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/4.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -72,8 +72,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image5.jpeg">
-									<img src="fontend/assets/img/image5.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/5.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/5.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -87,8 +87,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image6.jpeg">
-									<img src="fontend/assets/img/image6.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/6.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/6.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -104,8 +104,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image6.jpeg">
-									<img src="fontend/assets/img/image6.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/7.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/7.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -119,8 +119,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image5.jpeg">
-									<img src="fontend/assets/img/image5.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/8.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/8.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -134,8 +134,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image4.jpeg">
-									<img src="fontend/assets/img/image4.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/9.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/9.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -149,8 +149,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image3.jpeg">
-									<img src="fontend/assets/img/image3.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/10.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/10.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -164,8 +164,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image2.jpeg">
-									<img src="fontend/assets/img/image2.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/11.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/11.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>
@@ -179,8 +179,8 @@
 					<div class="uk-text-center">
 						<div class="uk-inline-clip uk-transition-toggle" tabindex="0">
 							<div>
-								<a href="fontend/assets/img/image1.jpeg">
-									<img src="fontend/assets/img/image1.jpeg" alt="" class="img-fluid">
+								<a href={{asset("fontend/assets/img/photo_gallery/12.png")}}>
+									<img src={{asset("fontend/assets/img/photo_gallery/12.png")}} alt="" class="img-fluid">
 									<div
 										class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
 										<p class="uk-h4 uk-margin-remove">Fade</p>

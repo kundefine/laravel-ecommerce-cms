@@ -214,3 +214,16 @@ $(".owl-img2").owlCarousel({
         }
     }
 });
+
+
+
+$(document).ready(function(){
+    $('#close-registration-sidebar').click(function() {
+        $('.registration-sidebar').hide('slow');
+    })
+
+    $('#registrationSideView').click(function(e){
+        e.preventDefault();
+        $('.registration-sidebar').show('slow');
+    })
+});

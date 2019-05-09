@@ -28,7 +28,7 @@
 
 					{{-- Filter Area --}}
 					<div class="col-lg-3 left-side-bar">
-						<form action="{{ url()->current() }}" method="get">
+						<form action="{{ url()->current() }}" method="get" id="product_filter_form">
 							<div class="filter-section" id="filter-bar">
 								{{-- Clear Filter --}}
 								<input type="hidden" name="filter">
@@ -37,13 +37,18 @@
 									<h6 style="margin-top: 15px;">Clear Filter</h6>
 
 										@if(request()->has('filter'))
-											@foreach(request()->all() as $filter => $value)
+											{{--@foreach(request()->all() as $filter => $value)
 												@if($value !== null)
 													<button type="button" class="btn btn-warning btn-sm badge">
 														 {{ $filter }} <span class="badge">x</span>
 													</button>
 												@endif
-											@endforeach
+											@endforeach--}}
+
+										<a href="{{ url()->current() }}" class="btn btn-warning badge">
+											Clear Filter <span class="badge">x</span>
+										</a>
+
 										@endif
 								</div>
 
@@ -252,18 +257,77 @@
                                         return strpos($pro->product_measurement_details, request('color'));
 									});
 								}
+								if( request()->has('sortBy') && ( request('sortBy') === 'low_price' ) ) {
+                                    $product = $product->sortBy('product_price_after_discount');
+								} elseif ( request()->has('sortBy') && ( request('sortBy') === 'high_price' ) ) {
+                                    $product = $product->sortByDesc('product_price_after_discount');
+								} elseif ( request()->has('sortBy') && ( request('sortBy') === 'newest_first' ) ) {
+                                    $product = $product->sortByDesc('updated_at');
+								}
 
 
-								dd( $product->pluck('product_price_after_discount', 'product_measurement_details'), $sizes);
+//								dd( $product->pluck('product_price_after_discount', 'created_at'), $sizes);
 
 							?>
+
+								<div class="row">
+									<div class="col-md-6">
+										<h2 class="page-name">{{$current_cat->title}}</h2>
+									</div>
+									<div class="col-md-6">
+										<h4 class="product-show-detals">showing <span>1 - 30</span> of <span>146 matches</span></h4>
+									</div>
+								</div>
+								<div class="row short-name-area">
+									<div class="col-md-6 short-type">
+										<span>sort By</span>
+										<select name="sortBy" id="" form="product_filter_form">
+											<option value="newest_first" @if(request('sortBy') === 'newest_first') selected @endif>Newest First</option>
+											<option value="low_price" @if(request('sortBy') === 'low_price') selected @endif>Low Price</option>
+											<option value="high_price" @if(request('sortBy') === 'high_price') selected @endif>High Price</option>
+										</select>
+										<button type="submit" class="btn btn-light btn-sm" form="product_filter_form">Select</button>
+									</div>
+									<div class="col-md-6 text-right short-type">
+										<span>sort By</span>
+										<select name="shornum" id="">
+											<option value="9">9</option>
+											<option value="12">12</option>
+											<option value="30">30</option>
+										</select>
+									</div>
+								</div>
+								<div class="row product-catagory-list">
+									<!--Single Product Items-->
+									@if($product->count())
+										@foreach($product as $product)
+											<div class="col-md-4">
+												<div class="single-product">
+													<span class="top-pup">Sale</span>
+													@if(trim($product->product_thumbnail, "\"") === 'nothumbnail.jpg')
+														<a href="/product/{{$product->id}}"><img src="https://via.placeholder.com/468x480?text=No+Image+Found"></a>
+													@else
+														<a href="/product/{{$product->id}}"><img src="/product_images/product_{{$product->id}}/{{trim($product->product_thumbnail, "\"")}}"></a>
+													@endif
+													<h4 class="web-name">Keedo</h4>
+													<h4 class="product-name"><a href="/product/{{$product->id}}">{{$product->product_title}}</a></h4>
+													<h3 class="price"><del>BDT{{$product->product_price}}</del><ins> BDT{{$product->product_price_after_discount}}</ins></h3>
+												</div>
+											</div>
+										@endforeach
+									@else
+											<div class="col-md-4 m-auto" style="height: 500px;">
+												<h2 style=" margin-top: 100px">No product found</h2>
+											</div>
+									@endif
+								</div>
 						</div>
 					@endif
 
 
 					{{-- Product Area --}}
 					@if(!request()->has('filter'))
-					<div class="col-lg-9 right-side-product-area">
+				<div class="col-lg-9 right-side-product-area">
 						<div class="row">
 							<div class="col-md-6">
 								<h2 class="page-name">{{$current_cat->title}}</h2>
@@ -275,11 +339,12 @@
 						<div class="row short-name-area">
 							<div class="col-md-6 short-type">
 								<span>sort By</span>
-								<select name="shorttype" id="">
-									<option value="postion">Postion</option>
-									<option value="native">Native</option>
-									<option value="price">Price</option>
+								<select name="sortBy" id="" form="product_filter_form">
+									<option value="newest_first" @if(request('sortBy') === 'newest_first') selected @endif>Newest First</option>
+									<option value="low_price" @if(request('sortBy') === 'low_price') selected @endif>Low Price</option>
+									<option value="high_price" @if(request('sortBy') === 'high_price') selected @endif>High Price</option>
 								</select>
+								<button type="submit" class="btn btn-light btn-sm" form="product_filter_form">Select</button>
 							</div>
 							<div class="col-md-6 text-right short-type">
 								<span>sort By</span>

@@ -73,6 +73,7 @@
 	<script src={{asset("fontend/assets/js/modernizr-3.6.0.min.js")}}></script>
 	<!--jQuery Js-->
 	<script src={{asset("fontend/assets/js/jquery-3.3.1.min.js")}}></script>
+	<script src={{asset("js/plugins/jquery/jquery-ui.min.js")}}></script>
 	<!--Proper Js-->
 	<script src={{asset("fontend/assets/js/propper.js")}}></script>
 	<!--Bootstrap 4.1.3-->
