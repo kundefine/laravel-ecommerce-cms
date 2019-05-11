@@ -422,7 +422,10 @@ String.prototype.trimLeft = function(charlist) {
                 let size = JSON.parse(singleProduct.product_measurement_details).size;
 
                 $('#add_to_cart-k').click(function(e){
+
                     e.preventDefault();
+
+                    $('html, body').animate({scrollTop:0}, '300');
                     singleProduct.quantity = $('#product_q_plus').val();
                     $.ajax({
                         headers: {

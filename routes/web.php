@@ -15,16 +15,13 @@ Route::get('/page/{pageSlug}', 'PageController@page');
 Route::get('/category/{id}', function ($id) {
     $current_cat = Catagory::findOrFail($id);
     $categoy_products = Catagory::find($id)->products()->get()->filter( function($singleProduct){ return $singleProduct->visibility == 1; } )->all();
-    $menus = Menu::where('visibility', '=', '1')->get();
-    return view('fontend.category.index', compact('menus','categoy_products', 'current_cat'));
+    return view('fontend.category.index', compact('categoy_products', 'current_cat'));
 });
 
 Route::get('/product/{id}', function ($id) {
     $id = (int) $id;
-
     $product = Product::findOrFail($id);
-    $menus = Menu::where('visibility', '=', '1')->get();
-    return view('fontend.product.index', compact('menus','product'));
+    return view('fontend.product.index', compact('product'));
 });
 
 Route::get('/order_added', function(){
@@ -36,17 +33,15 @@ Route::get('/order_added', function(){
         return redirect('/');
     }
 
-    $menus = Menu::where('visibility', '=', '1')->get();
-    return view('fontend.order', compact('menus', 'order'));
+    return view('fontend.order', compact( 'order'));
 });
 
 Route::get('/search', function(){
     $searchTerm = request()->get('q');
 
     $all_products = Product::where('product_title', 'LIKE', "%{$searchTerm}%")->get();
-    // dd($result);
-    $menus = Menu::where('visibility', '=', '1')->get();
-    return view('fontend.search', compact('menus', 'all_products'));
+
+    return view('fontend.search', compact( 'all_products'));
 });
 
 
@@ -125,6 +120,13 @@ Route::post('/remove_cart_item', 'AddToCartController@removeCart');
 Route::post('/update_cart', 'AddToCartController@updateQuantity');
 Route::post('/update_attributes', 'AddToCartController@updateAttributes');
 Route::post('/guest/order', 'OrderController@storeAsGuest');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user', 'UserController@frontendIndex');
+    Route::post('user/add-shipping-address', 'UserController@saveUserShippingAddress');
+});
+
 
 
 

@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAddress() {
+        return $this->hasMany('App\Address');
+    }
+
+    public function addressExits() {
+        if($this->getAddress->all()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

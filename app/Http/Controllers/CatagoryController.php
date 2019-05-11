@@ -26,7 +26,6 @@ class CatagoryController extends Controller
      */
     public function create()
     {
-        // $menus = Menu::orderBy('created_at', 'desc')->get();
         $categories = Catagory::orderBy('created_at', 'desc')->get();
         return view('admin.category.create', compact('categories'));
     }
@@ -80,7 +79,7 @@ class CatagoryController extends Controller
     public function edit(Catagory $catagory)
     {
         $child_catagories = Catagory::get()->where('id', '!=', $catagory->id);
-        // $menus = Menu::all();
+
         $allready_child = json_decode($catagory->child_catagories_id);
         if($allready_child == null) $allready_child = [];
         return view('admin.category.edit', compact('catagory', 'child_catagories', 'allready_child'));

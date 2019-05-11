@@ -1960,6 +1960,7 @@ ul.product-nav {
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
+  display: none;
 }
 .registration-sidebar-wrapper {
   box-sizing: border-box;
@@ -1979,4 +1980,22 @@ span#close-registration-sidebar {
   top: 0;
   transform: translateX(-100%);
   cursor: pointer;
+}
+
+.show-registration-sidebar {
+  display:block;
+}
+
+
+/* Registation sidebar end */
+
+#user-logout {
+  margin: 0;
+  padding: 0;
+  margin-left: -9px;
+  font-size: 12px;
+  vertical-align: super;
+  color: deepskyblue;
+  font-weight: bold;
+  margin-right: 15px;
 }

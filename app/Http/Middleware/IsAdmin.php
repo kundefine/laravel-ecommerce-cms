@@ -21,7 +21,7 @@ class IsAdmin
             if($uesr_type === "admin") {
 
             } else {
-                return redirect('/');
+                return redirect('/user');
             }
         } else {
             return redirect('/login');

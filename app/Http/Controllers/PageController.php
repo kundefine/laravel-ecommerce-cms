@@ -110,18 +110,17 @@ class PageController extends Controller
 
 
     public function home() {
-        $menus = Menu::where('visibility', '=', '1')->get();
+
         $bottomHomeBanner = Banner::where('banner_type', '=', 'bottom_home_banner')->get();
         $bottomHomeBanner2 = Banner::where('banner_type', '=', 'bottom_home_banner2')->get();
         $home = Page::where('slug', '=', 'home')->first()->getAttributes();
 
-        return view('fontend.index', compact('menus', 'home', 'bottomHomeBanner', 'bottomHomeBanner2'));
+        return view('fontend.index', compact( 'home', 'bottomHomeBanner', 'bottomHomeBanner2'));
     }
 
     public function page($slug) {
-        $menus = Menu::where('visibility', '=', '1')->get();
         $page = Page::where('slug', '=', $slug)->firstOrFail();
-        return view('fontend.page', compact('menus', 'page'));
+        return view('fontend.page', compact( 'page'));
     }
 
     public function homeEdit(Page $page) {

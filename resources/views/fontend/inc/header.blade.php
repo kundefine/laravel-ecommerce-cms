@@ -1,9 +1,9 @@
 @include('fontend.inc.registration-sidebar')
 
 <header class="header-area">
-		<div class="header-top">
-			<h2>Free Shipping on Orders over TK.750</h2>
-		</div>
+		{{--<div class="header-top">--}}
+			{{--<h2>Free Shipping on Orders over TK.750</h2>--}}
+		{{--</div>--}}
 		<div class="header-middle">
 			<div class="container">
 				<div class="row">
@@ -32,9 +32,24 @@
 									<span class="fas fa-user"></span> Account
 								</a>
 							@else
-								<a href="/user/account" class="single-items" id="">
-									<span class="fas fa-user"></span> {{ auth()->user()->name }}
-								</a>
+								@if(auth()->user()->user_type === 'user')
+									<a href="/user" class="single-items" id="">
+										<span class="fas fa-user"></span> {{ auth()->user()->name }}
+										<a href="{{ route('logout') }}" class="single-items" id="user-logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+											(logout)
+										</a>
+
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											@csrf
+										</form>
+									</a>
+
+
+								@else
+									<a href="/admin" class="single-items" id="">
+										<span class="fas fa-user"></span> {{ auth()->user()->name }}
+									</a>
+								@endif
 							@endif
 							<a id="full-cart-button" href="" class="single-items relative">
 								<span class="fas fa-shopping-cart"><div id="cart-total-item" class="cart-total-item">{{Cart::getContent()->count()}}</div></span> cart
